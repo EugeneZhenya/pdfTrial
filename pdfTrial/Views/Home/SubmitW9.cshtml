@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "Get or Sign W9 Form";
+}
+    <div>
+        <a href="~/Content/W-9 Form Filled.pdf" target="_blank">Open PDF</a>
+    </div>
+    <div>
+        @Html.ActionLink("E-Sign PDF", "AdobeESign", null, new { @class = "btn btn-primary", @type = "button" })
+    </div>

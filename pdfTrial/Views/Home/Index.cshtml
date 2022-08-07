@@ -1,0 +1,37 @@
+﻿@using pdfTrial.Models 
+@model pdfTrial.Models.MerchantAgreement
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row" style="margin: 1rem -.75rem 0;">
+    @Html.ActionLink("W9 Form", "W9", "Home")
+    <div style="border: solid #dee2e6; border-width: 1px; border-top-left-radius: .25rem; border-top-right-radius: .25rem; padding: 1.5rem; margin: 1rem -.75rem 0;">
+        @using (Html.BeginForm("MerchantAgreement", "Home", FormMethod.Post, new { @class = "row g-4 align-items-center" }))
+        {
+            <div class="col-auto">
+                @Html.CheckBoxFor(m => m.IsWhiteLabeled, new { @class = "form-check-input", @name = "IsWhiteLabeled" })
+                @Html.LabelFor(m => m.IsWhiteLabeled, "White Labeled")
+            </div>
+            <div class="col-auto">
+                @Html.CheckBoxFor(m => m.IsVirginia, new { @class = "form-check-input", @name = "IsVirginia" })
+                @Html.LabelFor(m => m.IsVirginia, "Virginia")
+            </div>
+            <div class="col-auto">
+                @Html.EnumDropDownListFor(m => m.MerchantAgreementTypes, new { @class = "form-control", @name = "AgreementType" })
+            </div>
+            <div class="col-auto">
+                @Html.CheckBoxFor(m => m.FourOwnersAndMerchants, new { @class = "form-check-input", @name = "FourOwnersAndMerchants" })
+                @Html.LabelFor(m => m.FourOwnersAndMerchants, "4 Owners and Merchants")
+            </div>
+            <br />
+            <row class="align-items-center">
+                <div class="col"></div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Fill Merchant Agreement Form</button>
+                </div>
+                <div class="col"></div>
+            </row>
+        }
+    </div>
+</div>

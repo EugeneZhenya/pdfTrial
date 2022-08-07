@@ -1,0 +1,12 @@
+﻿@model pdfTrial.Models.MerchantAgreement
+@{
+    ViewBag.Title = "Get or Sign Merchant Agreement";
+}
+
+<div>
+    <a href="~/Content/@Model.TemplatePath" target="_blank">Open PDF</a>
+</div>
+<div>
+    @Html.ActionLink("E-Sign PDF", "AdobeESign", null, new { @class = "btn btn-primary", @type = "button" })
+</div>
+

@@ -1,0 +1,185 @@
+﻿@model pdfTrial.Models.W9Form
+@{
+    ViewBag.Title = "W9 FORM";
+}
+
+@using (Html.BeginForm("SubmitW9", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td colspan="10">
+                        @Html.LabelFor(m => m.Name, "1 Name (as shown on your income tax return). Name is required on this line; do not leave this line blank.")
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "min-width: 100%" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        @Html.LabelFor(m => m.BusinessName, "2 Business name/disregarded entity name, if different from above")
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        @Html.TextBoxFor(m => m.BusinessName, new { @class = "form-control", style = "min-width: 100%" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        3 Check appropriate box for federal tax classification of the person whose name is entered on line 1. Check only one of the following seven boxes.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.CheckBoxFor(m => m.Individual, new { @class = "form-check-input" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(m => m.Individual, "Individual/sole proprietor or single-member LLC")
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(m => m.CCorporation, new { @class = "form-check-input" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(m => m.CCorporation, "C Corporation")
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(m => m.SCorporation, new { @class = "form-check-input" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(m => m.SCorporation, "S Corporation")
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(m => m.Partnership, new { @class = "form-check-input" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(m => m.Partnership, "Partnership")
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(m => m.TrustOrEstate, new { @class = "form-check-input" })
+                    </td>
+                    <td>
+                        @Html.LabelFor(m => m.TrustOrEstate, "Trust/estate")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.CheckBoxFor(m => m.Limited, new { @class = "form-check-input" })
+                    </td>
+                    <td colspan="9">
+                        @Html.LabelFor(m => m.Limited, "Limited liability company. Enter the tax classification (C=C corporation, S=S corporation, P=Par1nership)")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.CheckBoxFor(m => m.Other, new { @class = "form-check-input" })
+                    </td>
+                    <td colspan="9">
+                        @Html.LabelFor(m => m.Other, "Other (see instructions) ►")
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">4 Exemptions (codes apply only to certain entities, not individuals; see instructions on page 3):</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-end">
+                        @Html.LabelFor(m => m.PayeeCode, "Exempt payee code (if any)")
+                    </td>
+                    <td colspan="8">
+                        @Html.TextBoxFor(m => m.PayeeCode, new { @class = "form-control", style = "min-width: 100%" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-end">
+                        @Html.LabelFor(m => m.ReportingCode, "Exemption from FATCA reporting code (if any)")
+                    </td>
+                    <td colspan="8">
+                        @Html.TextBoxFor(m => m.ReportingCode, new { @class = "form-control", style = "min-width: 100%" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        @Html.LabelFor(m => m.Address, "5 Address (number, street, and apt. or suite no.) See instructions.")
+                    </td>
+                    <td colspan="6" rowspan="2">
+                        @Html.LabelFor(m => m.RequesterInfo, "Requester's name and address (optional)")
+                        @Html.TextAreaFor(m => m.RequesterInfo, new { @class = "form-control", style = "min-width: 100%" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", style = "min-width: 100%" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        @Html.LabelFor(m => m.CityAndState, "6 City, state, and ZIP code")
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        @Html.TextBoxFor(m => m.CityAndState, new { @class = "form-control", style = "min-width: 100%" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        @Html.LabelFor(m => m.AccountNumber, "7 List account number(s) here (optional)")
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        @Html.TextBoxFor(m => m.AccountNumber, new { @class = "form-control", style = "min-width: 100%" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">Social security number</td>
+                    <td>or</td>
+                    <td colspan="5">Employer identification number</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <div class="d-inline-flex">
+                            @Html.TextBoxFor(m => m.SocialNumberStart, new { @class = "form-control w-25", @maxlength = "3" })
+                            &nbsp;-&nbsp;
+                            @Html.TextBoxFor(m => m.SocialNumberMiddle, new { @class = "form-control w-25", @maxlength = "2" })
+                            &nbsp;-&nbsp;
+                            @Html.TextBoxFor(m => m.SocialNumberEnd, new { @class = "form-control w-25", @maxlength = "4" })
+                        </div>
+                    </td>
+                    <td></td>
+                    <td colspan="5">
+                        <div class="d-inline-flex">
+                            @Html.TextBoxFor(m => m.EmployerIdStart, new { @class = "form-control w-25", @maxlength = "2" })
+                            &nbsp;-&nbsp;
+                            @Html.TextBoxFor(m => m.EmployerIdEnd, new { @class = "form-control w-50", @maxlength = "7" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">Signature of U.S. person ►</th>
+                    <td colspan="3"></td>
+                    <th colspan="2">
+                        @Html.LabelFor(m => m.SignDate, "Date ►")
+                    </th>
+                    <td colspan="3">
+                        @Html.TextBoxFor(m => m.SignDate, new { @class = "form-control", style = "min-width: 100%", @readonly = "readonly", @Value = DateTime.Today.ToString("d") })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <row class="align-items-center">
+            <div class="col"></div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Get PDF</button>
+            </div>
+            <div class="col"></div>
+        </row>
+    </div>
+}

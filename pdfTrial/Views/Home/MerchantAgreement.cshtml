@@ -1,0 +1,276 @@
+﻿@using pdfTrial.Models
+@model pdfTrial.Models.MerchantAgreement
+@{
+    ViewBag.Title = "MERCHANT AGREEMENT";
+}
+
+<style>
+    div {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+
+@using (Html.BeginForm("MerchantAgreementSubmit", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
+
+    @Html.TextBoxFor(m => m.TemplatePath, new { style = "display: none;" })
+    @Html.CheckBoxFor(m => m.IsVirginia, new { style = "display: none;" })
+    @Html.CheckBoxFor(m => m.IsWhiteLabeled, new { style = "display: none;" })
+    @Html.CheckBoxFor(m => m.FourOwnersAndMerchants, new { style = "display: none;" })
+    @Html.TextBoxFor(m => m.MerchantAgreementType, new { style = "display: none;" })
+
+    if (Model.IsVirginia)
+    {
+        <div class="row">
+            <b>Proposed Factoring Disclosures for Virginia</b>
+        </div>
+    }
+    <div class="row">
+        <b><u>MERCHANT INFORMATION</u></b>
+    </div>
+    <div class="row g-1">
+        <div class="col-2">@Html.LabelFor(m => m.MerchantsLegalName, "Merchant’s Legal Name:")</div>
+        <div class="col-10">@Html.TextBoxFor(m => m.MerchantsLegalName, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-5">
+        <div class="col-auto">@Html.LabelFor(m => m.DBA, "D/B/A:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.DBA, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.PhoneNumber, "Phone Number:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.CellPhone, "Cell Phone:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.CellPhone, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-3">
+        <div class="col-auto">Type of entity: </div>
+        <div class="col-auto">@Html.CheckBoxFor(m => m.Corporation, new { @class = "form-check-input" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.Corporation, "Corporation")</div>
+        <div class="col-auto">@Html.CheckBoxFor(m => m.LimitedLiabilityCompany, new { @class = "form-check-input" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.LimitedLiabilityCompany, "Limited Liability Company")</div>
+        <div class="col-auto">@Html.CheckBoxFor(m => m.LimitedPartnership, new { @class = "form-check-input" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.LimitedPartnership, "Limited Partnership")</div>
+        <div class="col-auto">@Html.CheckBoxFor(m => m.LimitedLiabilityPartnership, new { @class = "form-check-input" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.LimitedLiabilityPartnership, "Limited Liability Partnership")</div>
+        <div class="col-auto">@Html.CheckBoxFor(m => m.SoleProprietor, new { @class = "form-check-input" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.SoleProprietor, "Sole Proprietor")</div>
+    </div>
+    <div class="row g-2">
+        <div class="col-auto">@Html.LabelFor(m => m.PhysicalAddress, "Physical Address:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.PhysicalAddress, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.PhysicalAddressCity, "City:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.PhysicalAddressCity, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.PhysicalAddressState, "State:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.PhysicalAddressState, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.PhysicalAddressZip, "Zip:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.PhysicalAddressZip, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-2">
+        <div class="col-auto">@Html.LabelFor(m => m.MailingAddress, "Mailing Address:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.MailingAddress, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.MailingAddressCity, "City:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.MailingAddressCity, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.MailingAddressState, "State:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.MailingAddressState, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.MailingAddressZip, "Zip:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.MailingAddressZip, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-3">
+        <div class="col-auto">@Html.LabelFor(m => m.MerchantEmail, "Merchant's Email:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.MerchantEmail, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.FederalID, "Federal ID#:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.FederalID, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    if (Model.IsWhiteLabeled)
+    {
+        <div class="row g-3">
+            <div class="col-2">@Html.LabelFor(m => m.WhiteLabelPartner, "Purchaser:")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.WhiteLabelPartner, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.NameOfPartner, "license granted by")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.NameOfPartner, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.ProgramManger, "Program Manager:")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.ProgramManger, new { @class = "form-control", style = "min-width: 100%" })</div>
+        </div>
+    }
+    <div class="row g-3">
+        <div class="col-2">@Html.LabelFor(m => m.MerchantName, "Merchant (#1) Print Name:")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.MerchantName, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.Merchant1SSNumber, "Merchant (#1) SS#")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Merchant1SSNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.Merchant1DriversLicenseNumber, "Merchant (#1) Driver's License Number")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Merchant1DriversLicenseNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-3">
+        <div class="col-2">@Html.LabelFor(m => m.Merchant1PrintNameAndTitle, "Merchant (#1) Title:")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Merchant1PrintNameAndTitle, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-3">
+        <div class="col-2">@Html.LabelFor(m => m.MerchantName2, "Merchant (#2) Print Name:")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.MerchantName2, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.Merchant2SSNumber, "Merchant (#2) SS#")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Merchant2SSNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.Merchant2DriversLicenseNumber, "Merchant (#2) Driver's License Number")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Merchant2DriversLicenseNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-3">
+        <div class="col-2">@Html.LabelFor(m => m.Merchant2PrintNameAndTitle, "Merchant (#2) Title:")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Merchant2PrintNameAndTitle, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    if (Model.FourOwnersAndMerchants)
+    {
+        <div class="row g-3">
+            <div class="col-2">@Html.LabelFor(m => m.MerchantName3, "Merchant (#3) Print Name:")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.MerchantName3, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.Merchant3SSNumber, "Merchant (#3) SS#")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Merchant3SSNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.Merchant3DriversLicenseNumber, "Merchant (#3) Driver's License Number")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Merchant3DriversLicenseNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        </div>
+        <div class="row g-3">
+            <div class="col-2">@Html.LabelFor(m => m.Merchant3PrintNameAndTitle, "Merchant (#3) Title:")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Merchant3PrintNameAndTitle, new { @class = "form-control", style = "min-width: 100%" })</div>
+        </div>
+        <div class="row g-3">
+            <div class="col-2">@Html.LabelFor(m => m.MerchantName4, "Merchant (#4) Print Name:")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.MerchantName4, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.Merchant4SSNumber, "Merchant (#4) SS#")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Merchant4SSNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.Merchant4DriversLicenseNumber, "Merchant (#4) Driver's License Number")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Merchant4DriversLicenseNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        </div>
+        <div class="row g-3">
+            <div class="col-2">@Html.LabelFor(m => m.Merchant4PrintNameAndTitle, "Merchant (#4) Title:")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Merchant4PrintNameAndTitle, new { @class = "form-control", style = "min-width: 100%" })</div>
+        </div>
+    }
+    <div class="row g-3">
+        <div class="col-2">@Html.LabelFor(m => m.Owner1PrintName, "Owner (#1) Print Name:")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Owner1PrintName, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.Owner1SSNumber, "Owner (#1) SS#")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Owner1SSNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.Owner1DriversLicenseNumber, "Owner (#1) Driver's License Number")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Owner1DriversLicenseNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-3">
+        <div class="col-2">@Html.LabelFor(m => m.Owner2PrintName, "Owner (#2) Print Name:")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Owner2PrintName, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.Owner2SSNumber, "Owner (#2) SS#")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Owner2SSNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.Owner2DriversLicenseNumber, "Owner (#2) Driver's License Number")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.Owner2DriversLicenseNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    if (Model.FourOwnersAndMerchants)
+    {
+        <div class="row g-3">
+            <div class="col-2">@Html.LabelFor(m => m.Owner3PrintName, "Owner (#3) Print Name:")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Owner3PrintName, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.Owner3SSNumber, "Owner (#3) SS#")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Owner3SSNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.Owner3DriversLicenseNumber, "Owner (#3) Driver's License Number")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Owner3DriversLicenseNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        </div>
+        <div class="row g-3">
+            <div class="col-2">@Html.LabelFor(m => m.Owner4PrintName, "Owner (#4) Print Name:")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Owner4PrintName, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.Owner4SSNumber, "Owner (#4) SS#")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Owner4SSNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.Owner4DriversLicenseNumber, "Owner (#4) Driver's License Number")</div>
+            <div class="col-2">@Html.TextBoxFor(m => m.Owner4DriversLicenseNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        </div>
+    }
+    <div class="row g-5">
+        <div class="col-auto">@Html.LabelFor(m => m.CompanyOfficer, "PIRS Capital, LLC Company Officer:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.CompanyOfficer, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-1">
+        <div class="col-8"></div>
+        <div class="col-2">@Html.LabelFor(m => m.AgreementDate, "Agreement Date:")</div>
+        <div class="col-2">@Html.TextBoxFor(m => m.AgreementDate, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row">
+        <b><u>PURCHASE AND SALE OF FUTURE RECEIVABLES</u></b>
+    </div>
+    <div class="row">
+        <b><u>Payment of Specified Percentage</u></b>
+    </div>
+    <div class="row g-2">
+        <div class="col-auto">@Html.LabelFor(m => m.PurchasePrice, "Purchase Price:")$</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.PurchasePrice, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.SpecifiedPercentage, "Specified Percentage:")%</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.SpecifiedPercentage, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.PurchasedAmount, "Purchased Amount:")$</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.PurchasedAmount, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    if (Convert.ToInt16(Model.MerchantAgreementType) != ((short)MerchantAgreementTypes.Merchant_Agreement_3))
+    {
+        <div class="row">
+            <b><u>Fees</u></b>
+        </div>
+        <div class="row g-3">
+            @if (Convert.ToInt16(Model.MerchantAgreementType) != ((short)MerchantAgreementTypes.Merchant_Agreement_1))
+            {
+                <div class="col-auto"><b>Processing Fee:</b></div>
+                <div class="col-auto">@Html.LabelFor(m => m.OriginatingFeeText, "equal to:")</div>
+                <div class="col-auto">@Html.TextBoxFor(m => m.OriginatingFeeText, new { @class = "form-control", style = "min-width: 100%" })</div>
+                <div class="col-auto">@Html.LabelFor(m => m.OriginatingFeeNum, "percent:")</div>
+                <div class="col-auto">@Html.TextBoxFor(m => m.OriginatingFeeNum, new { @class = "form-control", style = "min-width: 100%" })</div>
+            }
+            @if (Convert.ToInt16(Model.MerchantAgreementType) != ((short)MerchantAgreementTypes.Merchant_Agreement_2))
+            {
+                <div class="col-auto"><b>@Html.LabelFor(m => m.AppFee, "Application Fee:")</b></div>
+                <div class="col-auto">@Html.TextBoxFor(m => m.AppFee, new { @class = "form-control", style = "min-width: 100%" })</div>
+            }
+        </div>
+    }
+    <div class="row">
+        <b><u>SECURITY AGREEMENT</u></b>
+    </div>
+    <div class="row">
+        <b><u>Cross-Collateral.</u></b> @Html.LabelFor(m => m.SecurityIntrestIn, "To secure Owner’s delivery obligations to Purchaser under this Security Agreement and Guaranty (the “Agreement”), Owner hereby grants Purchaser a security interest in")
+        @Html.TextBoxFor(m => m.SecurityIntrestIn, new { @class = "form-control", style = "min-width: 100%" })
+    </div>
+    <div class="row">
+        <b><u>AUTHORIZATION AGREEMENT FOR ACH PAYMENTS</u></b>
+    </div>
+    <div class="row g-3">
+        <div class="col-2">@Html.LabelFor(m => m.RoutingNumber, "Routing Number")</div>
+        <div class="col-4">@Html.TextBoxFor(m => m.RoutingNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.AccountNumber, "Account Number")</div>
+        <div class="col-4">@Html.TextBoxFor(m => m.AccountNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-3">
+        <div class="col-2">@Html.LabelFor(m => m.AccountName, "Account Name")</div>
+        <div class="col-4">@Html.TextBoxFor(m => m.AccountName, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-2">@Html.LabelFor(m => m.BankName, "Bank Name")</div>
+        <div class="col-4">@Html.TextBoxFor(m => m.BankName, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-3">
+        <div class="col-auto">Type of Account:</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.Checking, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.Savings, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row">
+        View-Only Access to Online Bank
+    </div>
+    <div class="row g-5">
+        <div class="col-auto">@Html.LabelFor(m => m.Login, "Login:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.Login, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.Password, "Password:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.Password, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-auto">@Html.LabelFor(m => m.Date, "Date:")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.Date, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-5">
+        <div class="col-auto">@Html.LabelFor(m => m.Daily, "The Specified Daily Amount shall be $ ")</div>
+        <div class="col-auto">@Html.TextBoxFor(m => m.Daily, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+
+    <div class="row align-items-center" style="margin-top: 10px;">
+        <div class="col"></div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Get PDF</button>
+        </div>
+        <div class="col"></div>
+    </div>
+}

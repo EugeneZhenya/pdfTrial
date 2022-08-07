@@ -1,0 +1,17 @@
+﻿@using pdfTrial.Models
+@model PDFViewModel
+@{
+    ViewBag.Title = "Contact";
+    Layout = null;
+}
+
+<div id="container" style="position: absolute; top: 0; left: 0; font-family: '@Model.DefaultFont';">
+    @foreach (var x in Model.Texts)
+    {
+    <div style="position: absolute; top: @(Model.PageHeight - x.OffsetY)px; left: @(x.OffsetX)px; font: @(x.Weight) @(((int)x.FontSize))pt '@x.Font'; white-space: nowrap;">@(x.Text)</div>
+    }
+    @foreach (var fld in Model.Fields)
+    {
+        <div style="position: absolute; top: @(Model.PageHeight - fld.OffsetY)px; left: @(fld.OffsetX)px"><input id="@(fld.Name)" type="text" value="" width="@(fld.Width)" height="@(fld.Height)" style="height: @(fld.Height)px; width: @(fld.Width)px;" /></div><br />
+    }
+</div>

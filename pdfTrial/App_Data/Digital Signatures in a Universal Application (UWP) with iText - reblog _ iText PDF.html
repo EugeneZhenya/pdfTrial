@@ -1,0 +1,3066 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog -->
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# " class=" js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+<script gtm="GTM-TK7GXJ2" type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/optimize.js.завантаження"></script><script type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/uwt.js.завантаження"></script><script type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/insight.min.js.завантаження"></script><script type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/pixel.js.завантаження"></script><script type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/hotjar-714217.js.завантаження"></script><script type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/analytics.js.завантаження"></script><script type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/js"></script><script gtm="GTM-TK7GXJ2" type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/optimize.js(1).завантаження"></script><script async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/icons.30.svg.js.завантаження"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/gtm.js.завантаження" async=""></script><script type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/mff8rr7r5h2s.js.завантаження"></script><script type="text/javascript" defer="" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/matomo.js.завантаження"></script><script async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/container_IfMyMWDd.js.завантаження"></script><script type="text/javascript" async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/ga.js.завантаження"></script><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXYYYZZZ-1']);
+_gaq.push(['_trackPageview']);
+
+(function () {
+  var ga = document.createElement('script');
+  ga.type = 'text/javascript';
+  ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script>var _paq = _paq || [];(function(){var u=(("https:" == document.location.protocol) ? "https://itextpdf.matomo.cloud/" : "http://itextpdf.matomo.cloud/");_paq.push(["setSiteId", "1"]);_paq.push(["setTrackerUrl", u+"matomo.php"]);_paq.push(["setDoNotTrack", 1]);var _mtm = window._mtm = window._mtm || [];
+_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+g.async=true; g.src='https://cdn.matomo.cloud/itextpdf.matomo.cloud/container_IfMyMWDd.js'; s.parentNode.insertBefore(g,s);_paq.push(["trackPageView"]);_paq.push(["setIgnoreClasses", ["no-tracking","colorbox"]]);_paq.push(["enableLinkTracking"]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.type="text/javascript";g.defer=true;g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();</script>
+<link rel="canonical" href="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog">
+<meta http-equiv="content-language" content="en">
+<meta name="robots" content="index, follow">
+<link rel="shortlink" href="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog">
+<meta name="news_keywords" content="Digital signatures, UWP, iText 7, Contributors">
+<meta name="generator" content="Drupal 8">
+<link rel="image_src" href="https://itextpdf.com/sites/default/files/2018-11/Blogpost%20UWP%20signatures%201.png">
+<meta name="description" content="Recently we found Paul Madary&#39;s blog post about digital signatures in a Univeral Application (UWP) with iText 7, and we wanted to share it.">
+<meta name="abstract" content="Recently we found Paul Madary&#39;s blog post about digital signatures in a Univeral Application (UWP) with iText 7, and we wanted to share it.">
+<meta name="keywords" content="Technical notes, Digital signatures, UWP, iText 7, Contributors, iText 7 Community, iText 7 Core, iText 7 Suite, , ,">
+<meta name="dcterms.title" content="Digital Signatures in a Universal Application (UWP) with iText - reblog">
+<meta name="dcterms.creator" content="iText PDF">
+<meta name="dcterms.description" content="Recently we found Paul Madary&#39;s blog post about digital signatures in a Univeral Application (UWP) with iText 7, and we wanted to share it.">
+<meta name="dcterms.publisher" content="iTextpdf Software">
+<meta name="dcterms.date" content="2018-11-27">
+<meta property="og:site_name" content="iText PDF">
+<meta property="og:type" content="Blog post">
+<meta property="og:url" content="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog">
+<meta property="og:title" content="Digital Signatures in a Universal Application (UWP) with iText - reblog">
+<meta property="og:description" content="Recently we found Paul Madary&#39;s blog post about digital signatures in a Univeral Application (UWP) with iText 7, and we wanted to share it.">
+<meta property="og:image" content="https://itextpdf.com/sites/default/files/2018-11/Blogpost%20UWP%20signatures%201.png">
+<meta property="og:image:url" content="https://itextpdf.com/sites/default/files/2018-11/Blogpost%20UWP%20signatures%201.png">
+<meta property="og:updated_time" content="2018-11-27">
+<meta property="og:email" content="marketing@itextpdf.com">
+<meta property="article:publisher" content="https://www.facebook.com/iTextPDF/">
+<meta property="article:tag" content="Digital signatures">
+<meta property="article:tag" content="UWP">
+<meta property="article:tag" content="iText 7">
+<meta property="article:tag" content="Contributors">
+<meta property="article:published_time" content="2018-11-27">
+<meta property="article:modified_time" content="2018-11-27">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="Recently we found Paul Madary&#39;s blog post about digital signatures in a Univeral Application (UWP) with iText 7, and we wanted to share it.">
+<meta name="twitter:site" content="@iText">
+<meta name="twitter:title" content="Digital Signatures in a Universal Application (UWP) with iText - reblog | iText PDF">
+<meta name="twitter:creator" content="@iText">
+<meta name="twitter:url" content="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog">
+<meta name="twitter:image:alt" content="Digital Signatures in a Universal Application (UWP) with iText - reblog">
+<meta name="twitter:image" content="https://itextpdf.com/sites/default/files/2018-11/Blogpost%20UWP%20signatures%201.png">
+<meta name="Generator" content="Drupal 9 (https://www.drupal.org); Commerce 2">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>window.euCookieComplianceLoadScripts = function(category) {var scriptTag = document.createElement("script");scriptTag.src = "https:\/\/static.addtoany.com\/menu\/page.js";document.body.appendChild(scriptTag);}</script>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Article",
+            "headline": "Digital Signatures in a Universal Application (UWP) with iText - reblog",
+            "name": "Digital Signatures in a Universal Application (UWP) with iText - reblog",
+            "about": [
+                "\u003Ca href=\u0022/blog-type/technical-notes\u0022 hreflang=\u0022en\u0022\u003ETechnical notes\u003C/a\u003E",
+                "\u003Ca href=\u0022/tags/digital-signatures\u0022 hreflang=\u0022en\u0022\u003EDigital signatures\u003C/a\u003E",
+                "\u003Ca href=\u0022/tags/uwp\u0022 hreflang=\u0022en\u0022\u003EUWP\u003C/a\u003E",
+                "\u003Ca href=\u0022/tags/itext-7\u0022 hreflang=\u0022en\u0022\u003EiText 7\u003C/a\u003E",
+                "\u003Ca href=\u0022/tags/contributors\u0022 hreflang=\u0022en\u0022\u003EContributors\u003C/a\u003E"
+            ],
+            "description": "Recently we found Paul Madary\u0026#039;s blog post about digital signatures in a Univeral Application (UWP) with iText 7, and we wanted to share it.",
+            "image": {
+                "@type": "ImageObject",
+                "representativeOfPage": "True",
+                "url": "https://itextpdf.com/sites/default/files/2018-11/Blogpost%20UWP%20signatures%201.png",
+                "width": "150",
+                "height": "150"
+            },
+            "datePublished": "2018-11-27",
+            "dateModified": "2018-11-27",
+            "author": {
+                "@type": "Organization",
+                "@id": "@iText pdf",
+                "name": "iText PDF",
+                "url": "https://itextpdf.com"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "@id": "@iText pdf",
+                "name": "iText pdf",
+                "url": "https://itextpdf.com"
+            }
+        },
+        {
+            "brand": {
+                "@type": "Brand",
+                "name": "iText PDF",
+                "description": [
+                    "A powerful PDF Toolkit for PDF generation",
+                    "PDF programming",
+                    "handling \u0026 manipulation."
+                ],
+                "url": "https://itextpdf.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "representativeOfPage": "True",
+                    "url": "https://itextpdf.com/sites/default/files/2019-01/itext-logo.png",
+                    "width": "150",
+                    "height": "150"
+                }
+            }
+        }
+    ]
+}</script>
+<link rel="shortcut icon" href="https://itextpdf.com/themes/custom/compony/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="alternate" hreflang="en" href="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog">
+<link rel="revision" href="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog">
+<script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/google_tag.script.js.завантаження" defer=""></script>
+<script>window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};</script>
+
+    <title>Digital Signatures in a Universal Application (UWP) with iText - reblog | iText PDF</title>
+    <link rel="stylesheet" media="all" href="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/css_IHypBtXZtDxyx-xCxzFCeFYOOeOVw_337W3Ga6RRj44.css">
+<link rel="stylesheet" media="all" href="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/css_hpOpwHTPFduyGZiaYrK5mB-3NX8oFzSKvX7lMrZQwd8.css">
+
+      <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"node\/10806","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"cookieContentBlocker":{"consentAwareness":{"accepted":{"event":{"name":"eu_cookie_compliance.changePreferences","selector":"document"},"cookie":{"operator":"c","name":"cookie-agreed-categories","value":"statistical_cookies"}},"declined":{"event":{"name":"eu_cookie_compliance.changePreferences","selector":"document"},"cookie":{"operator":"!c","name":"cookie-agreed-categories","value":"statistical_cookies"}},"change":{"event":{"name":"","selector":""}}}},"matomo":{"disableCookies":false,"trackMailto":true,"trackColorbox":true},"data":{"extlink":{"extTarget":true,"extTargetNoOverride":false,"extNofollow":true,"extNoreferrer":false,"extFollowNoOverride":true,"extClass":"0","extLabel":"(link is external)","extImgClass":false,"extSubdomains":true,"extExclude":"","extInclude":"","extCssExclude":"","extCssExplicit":"","extAlert":false,"extAlertText":"This link will take you to an external web site. We are not responsible for their content.","mailtoClass":"mailto","mailtoLabel":"(link sends email)","extUseFontAwesome":false,"extIconPlacement":"append","extFaLinkClasses":"fa fa-external-link","extFaMailtoClasses":"fa fa-envelope-o","whitelistedDomains":null}},"eu_cookie_compliance":{"cookie_policy_version":"1.0.0","popup_enabled":true,"popup_agreed_enabled":false,"popup_hide_agreed":false,"popup_clicking_confirmation":false,"popup_scrolling_confirmation":false,"popup_html_info":"\u003Cdiv class=\u0022eu-cookie-compliance-banner eu-cookie-compliance-banner-info eu-cookie-compliance-banner--categories\u0022\u003E\n  \u003Cdiv role=\u0022dialog\u0022 id=\u0022cookie_dialog\u0022 aria-labelledby=\u0022popup-text\u0022 aria-modal=\u0022true\u0022 class=\u0022popup-content info eu-cookie-compliance-content\u0022\u003E\n    \n    \u003Cdiv id=\u0022popup-text\u0022 class=\u0022eu-cookie-compliance-message\u0022\u003E\n      \u003Ch2\u003EThis website uses cookies\u003C\/h2\u003E\u003Cp\u003EYou can change these settings at any time via the cookie preferences. Info about the \u003Ca href=\u0022\/en\/node\/10051\u0022\u003Ecookie policy\u003C\/a\u003E and \u003Ca href=\u0022\/en\/node\/10046\u0022\u003Eprivacy policy\u003C\/a\u003E of iTextPDF.\u003C\/p\u003E\n          \u003C\/div\u003E\n\n          \u003Cdiv id=\u0022eu-cookie-compliance-categories\u0022 class=\u0022eu-cookie-compliance-categories\u0022\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category disabled\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Necessary Cookies\n                \u003Cspan class=\u0022state-label visible\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies needed for the website to function normally.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-necessary_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u0022-1\u0022\u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-necessary_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022necessary_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                 checked                  disabled  \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Enecessary_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Functional cookies\n                \u003Cspan class=\u0022state-label\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies that help to improve the functionality of the website.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-functional_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u00220\u0022 \u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-functional_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022functional_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                                 \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Efunctional_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Statistical cookies\n                \u003Cspan class=\u0022state-label\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies that are used to enable analyses of surfing behaviour on the website.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-statistical_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u00220\u0022 \u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-statistical_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022statistical_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                                 \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Estatistical_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Advertention cookies\n                \u003Cspan class=\u0022state-label\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies that make it possible to display more relevant advertisements.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-advertention_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u00220\u0022 \u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-advertention_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022advertention_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                                 \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Eadvertention_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Social media cookies\n                \u003Cspan class=\u0022state-label\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies that ensure an optimal interaction between the website and the active social media plug-ins.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-social_media_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u00220\u0022 \u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-social_media_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022social_media_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                                 \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Esocial_media_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                          \u003Cdiv class=\u0022eu-cookie-compliance-categories-buttons\u0022\u003E\n            \u003Cbutton type=\u0022button\u0022\n                    class=\u0022eu-cookie-compliance-save-preferences-button\u0022\u003ESave preferences\u003C\/button\u003E\n          \u003C\/div\u003E\n              \u003C\/div\u003E\n    \n    \u003Cdiv id=\u0022popup-buttons\u0022 class=\u0022eu-cookie-compliance-buttons eu-cookie-compliance-has-categories\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022agree-button eu-cookie-compliance-default-button\u0022\u003EAccept all cookies\u003C\/button\u003E\n              \u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-button visually-hidden\u0022\u003EWithdraw consent\u003C\/button\u003E\n          \u003C\/div\u003E\n\n    \u003Cdiv class=\u0022eu-cookie-compliance-rocketship--buttons\u0022\u003E\n      \u003Cdiv class=\u0022eu-cookie-compliance-rocketship--accept-minimal-wrapper\u0022\u003E\u003Ca href=\u0022\u0022 class=\u0022eu-cookie-compliance-rocketship--accept-minimal\u0022\u003EAccept only the necessary cookies\u003C\/a\u003E\u003C\/div\u003E\n      \u003Cdiv class=\u0022eu-cookie-compliance-rocketship--dynamic-accept-wrapper\u0022\u003E\u003Ca href=\u0022\u0022 class=\u0022eu-cookie-compliance-rocketship--dynamic-accept all button\u0022 data-all=\u0022Accept all cookies\u0022 data-selection=\u0022Save my preferences\u0022\u003EAccept all cookies\u003C\/a\u003E\u003C\/div\u003E\n    \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","use_mobile_message":false,"mobile_popup_html_info":"\u003Cdiv class=\u0022eu-cookie-compliance-banner eu-cookie-compliance-banner-info eu-cookie-compliance-banner--categories\u0022\u003E\n  \u003Cdiv role=\u0022dialog\u0022 id=\u0022cookie_dialog\u0022 aria-labelledby=\u0022popup-text\u0022 aria-modal=\u0022true\u0022 class=\u0022popup-content info eu-cookie-compliance-content\u0022\u003E\n    \n    \u003Cdiv id=\u0022popup-text\u0022 class=\u0022eu-cookie-compliance-message\u0022\u003E\n      \n          \u003C\/div\u003E\n\n          \u003Cdiv id=\u0022eu-cookie-compliance-categories\u0022 class=\u0022eu-cookie-compliance-categories\u0022\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category disabled\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Necessary Cookies\n                \u003Cspan class=\u0022state-label visible\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies needed for the website to function normally.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-necessary_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u0022-1\u0022\u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-necessary_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022necessary_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                 checked                  disabled  \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Enecessary_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Functional cookies\n                \u003Cspan class=\u0022state-label\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies that help to improve the functionality of the website.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-functional_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u00220\u0022 \u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-functional_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022functional_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                                 \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Efunctional_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Statistical cookies\n                \u003Cspan class=\u0022state-label\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies that are used to enable analyses of surfing behaviour on the website.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-statistical_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u00220\u0022 \u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-statistical_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022statistical_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                                 \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Estatistical_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Advertention cookies\n                \u003Cspan class=\u0022state-label\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies that make it possible to display more relevant advertisements.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-advertention_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u00220\u0022 \u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-advertention_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022advertention_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                                 \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Eadvertention_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                  \u003Cdiv class=\u0022eu-cookie-compliance-category\u0022\u003E\n            \u003Cdiv class=\u0022eu-cookie-compliance-category-info\u0022\u003E\n              \u003Cdiv class=\u0022eu-cookie-compliance-category-label\u0022\u003E\n                Social media cookies\n                \u003Cspan class=\u0022state-label\u0022\u003E\n                  On\n                \u003C\/span\u003E\n              \u003C\/div\u003E\n                              \u003Cdiv class=\u0022eu-cookie-compliance-category-description\u0022\u003ECookies that ensure an optimal interaction between the website and the active social media plug-ins.\u003C\/div\u003E\n                          \u003C\/div\u003E\n            \u003Clabel role=\u0022checkbox\u0022 for=\u0022cookie-category-social_media_cookies\u0022 class=\u0022eu-cookie-compliance-category-switch\u0022\n               tabindex=\u00220\u0022 \u003E\n              \u003Cinput class=\u0022visually-hidden\u0022 type=\u0022checkbox\u0022 name=\u0022cookie-categories\u0022 id=\u0022cookie-category-social_media_cookies\u0022\n                     tabindex=\u0022-1\u0022\n                     value=\u0022social_media_cookies\u0022\n                     autocomplete=\u0022off\u0022\n                                 \u003E\n              \u003Cdiv class=\u0022toggle\u0022\u003E\n                \u003Cspan class=\u0022visually-hidden\u0022\u003Esocial_media_cookies\u003C\/span\u003E\n              \u003C\/div\u003E\n            \u003C\/label\u003E\n          \u003C\/div\u003E\n                          \u003Cdiv class=\u0022eu-cookie-compliance-categories-buttons\u0022\u003E\n            \u003Cbutton type=\u0022button\u0022\n                    class=\u0022eu-cookie-compliance-save-preferences-button\u0022\u003ESave preferences\u003C\/button\u003E\n          \u003C\/div\u003E\n              \u003C\/div\u003E\n    \n    \u003Cdiv id=\u0022popup-buttons\u0022 class=\u0022eu-cookie-compliance-buttons eu-cookie-compliance-has-categories\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022agree-button eu-cookie-compliance-default-button\u0022\u003EAccept all cookies\u003C\/button\u003E\n              \u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-button visually-hidden\u0022\u003EWithdraw consent\u003C\/button\u003E\n          \u003C\/div\u003E\n\n    \u003Cdiv class=\u0022eu-cookie-compliance-rocketship--buttons\u0022\u003E\n      \u003Cdiv class=\u0022eu-cookie-compliance-rocketship--accept-minimal-wrapper\u0022\u003E\u003Ca href=\u0022\u0022 class=\u0022eu-cookie-compliance-rocketship--accept-minimal\u0022\u003EAccept only the necessary cookies\u003C\/a\u003E\u003C\/div\u003E\n      \u003Cdiv class=\u0022eu-cookie-compliance-rocketship--dynamic-accept-wrapper\u0022\u003E\u003Ca href=\u0022\u0022 class=\u0022eu-cookie-compliance-rocketship--dynamic-accept all button\u0022 data-all=\u0022Accept all cookies\u0022 data-selection=\u0022Save my preferences\u0022\u003EAccept all cookies\u003C\/a\u003E\u003C\/div\u003E\n    \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","mobile_breakpoint":768,"popup_html_agreed":false,"popup_use_bare_css":true,"popup_height":"auto","popup_width":"100%","popup_delay":0,"popup_link":"\/how-buy\/legal\/privacy-policy","popup_link_new_window":true,"popup_position":false,"fixed_top_position":true,"popup_language":"en","store_consent":false,"better_support_for_screen_readers":true,"cookie_name":"","reload_page":false,"domain":"","domain_all_sites":false,"popup_eu_only_js":false,"cookie_lifetime":100,"cookie_session":0,"set_cookie_session_zero_on_disagree":0,"disagree_do_not_show_popup":false,"method":"categories","automatic_cookies_removal":true,"allowed_cookies":"DS_VARY_commercecurrency","withdraw_markup":"\u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-tab\u0022\u003EPrivacy settings\u003C\/button\u003E\n\u003Cdiv role=\u0022alertdialog\u0022 aria-labelledby=\u0022popup-text\u0022 class=\u0022eu-cookie-withdraw-banner\u0022\u003E\n  \u003Cdiv class=\u0022popup-content info eu-cookie-compliance-content\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022 class=\u0022eu-cookie-compliance-message\u0022\u003E\n      \u003Ch2\u003EWe use cookies on this site to enhance your user experience\u003C\/h2\u003E\u003Cp\u003EYou have given your consent for us to set cookies.\u003C\/p\u003E\n    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022 class=\u0022eu-cookie-compliance-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-button\u0022\u003EWithdraw consent\u003C\/button\u003E\n    \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","withdraw_enabled":false,"reload_options":0,"reload_routes_list":"","withdraw_button_on_info_popup":false,"cookie_categories":["necessary_cookies","functional_cookies","statistical_cookies","advertention_cookies","social_media_cookies"],"cookie_categories_details":{"necessary_cookies":{"uuid":"227539cf-2c3a-4109-8cbc-48ce5c6d27b6","langcode":"en","status":true,"dependencies":{"module":["eu_cookie_compliance_gtm"]},"third_party_settings":{"eu_cookie_compliance_gtm":{"gtm_data":{"necessary":"@status"}}},"_core":{"default_config_hash":"kdoD-uF7dBw0zRmFzfggbz4k1ouEngrMG7lnGL-T9-c"},"id":"necessary_cookies","label":"Necessary Cookies","description":"Cookies needed for the website to function normally.","checkbox_default_state":"required","weight":-9},"functional_cookies":{"uuid":"d9812cc1-2078-4f30-a389-3a65bbdc349b","langcode":"en","status":true,"dependencies":{"module":["eu_cookie_compliance_gtm"]},"third_party_settings":{"eu_cookie_compliance_gtm":{"gtm_data":{"functional":"@status"}}},"_core":{"default_config_hash":"ifRgQuqtS2ymF1A-StCWjJhOkr-0c8aCNzqr-fG_Qhw"},"id":"functional_cookies","label":"Functional cookies","description":"Cookies that help to improve the functionality of the website.","checkbox_default_state":"unchecked","weight":-8},"statistical_cookies":{"uuid":"bf195f70-bef8-4643-b34a-027364f722cf","langcode":"en","status":true,"dependencies":{"module":["eu_cookie_compliance_gtm"]},"third_party_settings":{"eu_cookie_compliance_gtm":{"gtm_data":{"statistical":"@status"}}},"_core":{"default_config_hash":"QKJEQwUeeMT-hk49PCeKmxqsKlrlPkFT9Rg4EOwOLP4"},"id":"statistical_cookies","label":"Statistical cookies","description":"Cookies that are used to enable analyses of surfing behaviour on the website.","checkbox_default_state":"unchecked","weight":-7},"advertention_cookies":{"uuid":"99e51063-5e28-4987-b228-584f970ffb90","langcode":"en","status":true,"dependencies":{"module":["eu_cookie_compliance_gtm"]},"third_party_settings":{"eu_cookie_compliance_gtm":{"gtm_data":{"commercial":"@status"}}},"_core":{"default_config_hash":"rseB2dV6uwo8-PXBALoNNJGYh7VqjJFyS0BayBF0aKA"},"id":"advertention_cookies","label":"Advertention cookies","description":"Cookies that make it possible to display more relevant advertisements.","checkbox_default_state":"unchecked","weight":-6},"social_media_cookies":{"uuid":"46499ebd-ea96-436d-b2e2-c9406a3b407f","langcode":"en","status":true,"dependencies":{"module":["eu_cookie_compliance_gtm"]},"third_party_settings":{"eu_cookie_compliance_gtm":{"gtm_data":{"social":"@status"}}},"_core":{"default_config_hash":"ZQmZsO7VZ1LEzqLRYYgFAtZj5Eij8qeh1z64ZCXzxWc"},"id":"social_media_cookies","label":"Social media cookies","description":"Cookies that ensure an optimal interaction between the website and the active social media plug-ins.","checkbox_default_state":"unchecked","weight":-5}},"enable_save_preferences_button":true,"cookie_value_disagreed":"0","cookie_value_agreed_show_thank_you":"1","cookie_value_agreed":"2","containing_element":"body","settings_tab_enabled":false,"open_by_default":true},"slick_translated_play":"Play","slick_translated_pause":"Pause","moderation_note":{"revision":0},"field_group":{"html_element":{"mode":"default","context":"view","settings":{"label":"Block one","element":"div","show_label":false,"label_element":"h3","attributes":"","effect":"none","speed":"fast","id":"","classes":"megamenu__block--one"}}},"itext_utm":{"utm_keys":{"utm_source":"utmcsr","utm_medium":"utmcmd","utm_campaign":"utmccn","utm_term":"utmctr","utm_content":"utmcct"}},"ajaxTrustedUrl":{"\/blog":true,"\/search":true},"user":{"uid":0,"permissionsHash":"c0d346f5aafe87061eb0a0e09fe0ce4ce12bfc0a952bef2e4b5caa833ad14843"}}</script>
+<script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/js_Dnnayz46MOIN5wLI49DYhsxhUFdNK2Zxe6kyrEosEOM.js.завантаження"></script>
+<script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/eu_cookie_compliance.js.завантаження" defer=""></script>
+<script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/js_gT0mjSmkMKRNSEEjrQ5FeEUHk9vbeLWLS2D-rMlCQ-Q.js.завантаження"></script>
+
+        <script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/core.aba90b1c.js.завантаження" type="module"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/core.aba90b1c.js.завантаження" type="module"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/core.aba90b1c.js.завантаження" type="module"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/core.aba90b1c.js.завантаження" type="module"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/core.aba90b1c.js.завантаження" type="module"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/core.aba90b1c.js.завантаження" type="module"></script><style type="text/css">.a2a_hide{display:none}.a2a_logo_color{background-color:#0166ff}.a2a_menu,.a2a_menu *{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;float:none;margin:0;padding:0;position:static;height:auto;width:auto}.a2a_menu{border-radius:6px;display:none;direction:ltr;background:#FFF;font:16px sans-serif-light,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Arial,Helvetica,"Liberation Sans",sans-serif;color:#000;line-height:12px;border:1px solid #CCC;vertical-align:baseline;overflow:hidden}.a2a_mini{min-width:200px;position:absolute;width:300px;z-index:9999997}.a2a_overlay{display:none;background:#616c7d;opacity:.92;backdrop-filter:blur(8px);position:fixed;top:0;right:0;left:0;bottom:0;z-index:9999998;-webkit-tap-highlight-color:transparent;transition:opacity .14s,backdrop-filter .14s}.a2a_full{background:#FFF;border:1px solid #FFF;height:auto;height:calc(320px);top:15%;left:50%;margin-left:-320px;position:fixed;text-align:center;width:640px;z-index:9999999;transition:transform .14s,opacity .14s}.a2a_full_footer,.a2a_full_header,.a2a_full_services{border:0;margin:0;padding:12px;box-sizing:border-box}.a2a_full_header{padding-bottom:8px}.a2a_full_services{height:280px;overflow-y:scroll;padding:0 12px;-webkit-overflow-scrolling:touch}.a2a_full_services .a2a_i{display:inline-block;float:none;width:181px;width:calc(33.334% - 18px)}div.a2a_full_footer{font-size:12px;text-align:center;padding:8px 14px}div.a2a_full_footer a,div.a2a_full_footer a:visited{display:inline;font-size:12px;line-height:14px;padding:8px 14px}div.a2a_full_footer a:focus,div.a2a_full_footer a:hover{background:0 0;border:0;color:#0166FF}div.a2a_full_footer a span.a2a_s_a2a,div.a2a_full_footer a span.a2a_w_a2a{background-size:14px;border-radius:3px;display:inline-block;height:14px;line-height:14px;margin:0 3px 0 0;vertical-align:top;width:14px}.a2a_modal{height:0;left:50%;margin-left:-320px;position:fixed;text-align:center;top:15%;width:640px;z-index:9999999;transition:transform .14s,opacity .14s;-webkit-tap-highlight-color:transparent}.a2a_modal_body{background:0 0;border:0;font:24px sans-serif-light,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Arial,Helvetica,"Liberation Sans",sans-serif;position:relative;height:auto;width:auto}.a2a_thanks{color:#fff;height:auto;margin-top:20px;width:auto}.a2a_thanks>div:first-child{margin:0 0 40px 0}.a2a_thanks div *{height:inherit}#a2a_copy_link{background:#FFF;border:1px solid #FFF;margin-top:15%}span.a2a_s_link#a2a_copy_link_icon,span.a2a_w_link#a2a_copy_link_icon{background-size:48px;border-radius:0;display:inline-block;height:48px;left:0;line-height:48px;margin:0 3px 0 0;position:absolute;vertical-align:top;width:48px}#a2a_modal input#a2a_copy_link_text{background-color:transparent;border:0;color:#2A2A2A;font:inherit;height:48px;left:62px;max-width:initial;padding:0;position:relative;width:564px;width:calc(100% - 76px)}#a2a_copy_link_copied{background-color:#0166ff;color:#fff;display:none;font:inherit;font-size:16px;margin-top:1px;padding:3px 8px}@media (prefers-color-scheme:dark){.a2a_menu a,.a2a_menu a.a2a_i,.a2a_menu a.a2a_i:visited,.a2a_menu a.a2a_more,i.a2a_i{border-color:#2a2a2a!important;color:#fff!important}.a2a_menu a.a2a_i:active,.a2a_menu a.a2a_i:focus,.a2a_menu a.a2a_i:hover,.a2a_menu a.a2a_more:active,.a2a_menu a.a2a_more:focus,.a2a_menu a.a2a_more:hover,.a2a_menu_find_container{border-color:#444!important;background-color:#444!important}.a2a_menu{background-color:#2a2a2a;border-color:#2a2a2a}.a2a_menu_find{color:#fff!important}.a2a_menu span.a2a_s_find svg{background-color:transparent!important}.a2a_menu span.a2a_s_find svg path{fill:#fff!important}}@media print{.a2a_floating_style,.a2a_menu,.a2a_overlay{visibility:hidden}}@keyframes a2aFadeIn{from{opacity:0}to{opacity:1}}.a2a_starting{opacity:0}.a2a_starting.a2a_full,.a2a_starting.a2a_modal{transform:scale(.8)}@media (max-width:639px){.a2a_full{border-radius:0;top:15%;left:0;margin-left:auto;width:100%}.a2a_modal{left:0;margin-left:10px;width:calc(100% - 20px)}}@media (min-width:318px) and (max-width:437px){.a2a_full .a2a_full_services .a2a_i{width:calc(50% - 18px)}}@media (max-width:317px){.a2a_full .a2a_full_services .a2a_i{width:calc(100% - 18px)}}@media (max-height:436px){.a2a_full{bottom:40px;height:auto;top:40px}}@media (max-height:550px){.a2a_modal{top:30px}}@media (max-height:360px){.a2a_modal{top:20px}.a2a_thanks>div:first-child{margin-bottom:20px}}.a2a_menu a{color:#0166FF;text-decoration:none;font:16px sans-serif-light,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Arial,Helvetica,"Liberation Sans",sans-serif;line-height:14px;height:auto;width:auto;outline:0}.a2a_menu a.a2a_i:visited,.a2a_menu a.a2a_more{color:#0166FF}.a2a_menu a.a2a_i:active,.a2a_menu a.a2a_i:focus,.a2a_menu a.a2a_i:hover,.a2a_menu a.a2a_more:active,.a2a_menu a.a2a_more:focus,.a2a_menu a.a2a_more:hover{color:#2A2A2A;border-color:#EEE;border-style:solid;background-color:#EEE;text-decoration:none}.a2a_menu span.a2a_s_find{background-size:24px;height:24px;left:8px;position:absolute;top:7px;width:24px}.a2a_menu span.a2a_s_find svg{background-color:#FFF}.a2a_menu span.a2a_s_find svg path{fill:#CCC}#a2a_menu_container{display:inline-block}.a2a_menu_find_container{border:1px solid #CCC;border-radius:6px;padding:2px 24px 2px 0;position:relative;text-align:left}.a2a_cols_container .a2a_col1{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}#a2a_modal input,#a2a_modal input[type=text],.a2a_menu input,.a2a_menu input[type=text]{display:block;background-image:none;box-shadow:none;line-height:100%;margin:0;outline:0;overflow:hidden;padding:0;-moz-box-shadow:none;-webkit-box-shadow:none;-webkit-appearance:none}#a2afeed_find_container input,#a2afeed_find_container input[type=text],#a2apage_find_container input,#a2apage_find_container input[type=text]{background-color:transparent;border:0;box-sizing:content-box;color:#2A2A2A;font:inherit;font-size:16px;height:28px;line-height:20px;left:38px;outline:0;margin:0;max-width:initial;min-height:initial;padding:2px 0;position:relative;width:99%}.a2a_clear{clear:both}.a2a_svg{background-repeat:no-repeat;display:block;overflow:hidden;height:32px;line-height:32px;padding:0;pointer-events:none;width:32px}.a2a_svg svg{background-repeat:no-repeat;background-position:50% 50%;border:none;display:block;left:0;margin:0 auto;overflow:hidden;padding:0;position:relative;top:0;width:auto;height:auto}a.a2a_i,i.a2a_i{display:block;float:left;border:1px solid #FFF;line-height:24px;padding:6px 8px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:132px}a.a2a_i span,a.a2a_more span{display:inline-block;overflow:hidden;vertical-align:top}a.a2a_i .a2a_svg{margin:0 6px 0 0}a.a2a_i .a2a_svg,a.a2a_more .a2a_svg{background-size:24px;height:24px;line-height:24px;width:24px}a.a2a_sss:hover{border-left:1px solid #CCC}a.a2a_more{border-bottom:1px solid #FFF;border-left:0;border-right:0;line-height:24px;margin:6px 0 0;padding:6px;-webkit-touch-callout:none}a.a2a_more span{height:24px;margin:0 6px 0 0}.a2a_kit .a2a_svg{background-repeat:repeat}.a2a_default_style a:empty,.a2a_flex_style a:empty,.a2a_floating_style a:empty,.a2a_overlay_style a:empty{display:none}.a2a_color_buttons a,.a2a_floating_style a{text-decoration:none}.a2a_default_style:not(.a2a_flex_style) a{float:left;line-height:16px;padding:0 2px}.a2a_default_style a:hover .a2a_svg,.a2a_floating_style a:hover .a2a_svg,.a2a_overlay_style a:hover .a2a_svg svg{opacity:.7}.a2a_overlay_style.a2a_default_style a:hover .a2a_svg{opacity:1}.a2a_default_style .a2a_count,.a2a_default_style .a2a_svg,.a2a_floating_style .a2a_svg,.a2a_menu .a2a_svg,.a2a_vertical_style .a2a_count,.a2a_vertical_style .a2a_svg{border-radius:4px}.a2a_default_style .a2a_counter img,.a2a_default_style .a2a_dd,.a2a_default_style .a2a_svg{float:left}.a2a_default_style .a2a_img_text{margin-right:4px}.a2a_default_style .a2a_divider{border-left:1px solid #000;display:inline;float:left;height:16px;line-height:16px;margin:0 5px}.a2a_kit a{cursor:pointer}.a2a_floating_style{background-color:#fff;border-radius:6px;position:fixed;z-index:9999995}.a2a_overlay_style{z-index:2147483647}.a2a_floating_style,.a2a_overlay_style{animation:a2aFadeIn .2s ease-in;padding:4px}.a2a_vertical_style:not(.a2a_flex_style) a{clear:left;display:block;overflow:hidden;padding:4px}.a2a_floating_style.a2a_default_style{bottom:0}.a2a_floating_style.a2a_default_style a,.a2a_overlay_style.a2a_default_style a{padding:4px}.a2a_count{background-color:#fff;border:1px solid #ccc;box-sizing:border-box;color:#2a2a2a;display:block;float:left;font:12px Arial,Helvetica,sans-serif;height:16px;margin-left:4px;position:relative;text-align:center;width:50px}.a2a_count:after,.a2a_count:before{border:solid transparent;border-width:4px 4px 4px 0;content:"";height:0;left:0;line-height:0;margin:-4px 0 0 -4px;position:absolute;top:50%;width:0}.a2a_count:before{border-right-color:#ccc}.a2a_count:after{border-right-color:#fff;margin-left:-3px}.a2a_count span{animation:a2aFadeIn .14s ease-in}.a2a_vertical_style .a2a_counter img{display:block}.a2a_vertical_style .a2a_count{float:none;margin-left:0;margin-top:6px}.a2a_vertical_style .a2a_count:after,.a2a_vertical_style .a2a_count:before{border:solid transparent;border-width:0 4px 4px 4px;content:"";height:0;left:50%;line-height:0;margin:-4px 0 0 -4px;position:absolute;top:0;width:0}.a2a_vertical_style .a2a_count:before{border-bottom-color:#ccc}.a2a_vertical_style .a2a_count:after{border-bottom-color:#fff;margin-top:-3px}.a2a_color_buttons .a2a_count,.a2a_color_buttons .a2a_count:after,.a2a_color_buttons .a2a_count:before,.a2a_color_buttons.a2a_vertical_style .a2a_count:after,.a2a_color_buttons.a2a_vertical_style .a2a_count:before{background-color:transparent;border:none;color:#fff;float:none;width:auto}.a2a_color_buttons.a2a_vertical_style .a2a_count{margin-top:0}.a2a_flex_style{display:flex;align-items:flex-start;gap:0}.a2a_default_style.a2a_flex_style{left:0;right:0;width:100%}.a2a_vertical_style.a2a_flex_style{flex-direction:column;top:0;bottom:0}.a2a_flex_style a{display:flex;justify-content:center;flex:1;padding:4px}.a2a_flex_style.a2a_vertical_style a{flex-direction:column}.a2a_floating_style.a2a_color_buttons,.a2a_floating_style.a2a_flex_style{border-radius:0;padding:0}.a2a_floating_style.a2a_default_style.a2a_flex_style{bottom:0}.a2a_kit.a2a_flex_style .a2a_counter img,.a2a_kit.a2a_flex_style .a2a_dd,.a2a_kit.a2a_flex_style .a2a_svg{float:none}.a2a_nowrap{white-space:nowrap}.a2a_note{margin:0 auto;padding:9px;font-size:12px;text-align:center}.a2a_note .a2a_note_note{margin:0;color:#2A2A2A}.a2a_wide a{display:block;margin-top:3px;border-top:1px solid #EEE;text-align:center}.a2a_label{position:absolute!important;clip-path:polygon(0px 0px,0px 0px,0px 0px);-webkit-clip-path:polygon(0px 0px,0px 0px,0px 0px);overflow:hidden;height:1px;width:1px}.a2a_kit,.a2a_menu,.a2a_modal,.a2a_overlay{-ms-touch-action:manipulation;touch-action:manipulation;outline:0}.a2a_dd img{border:0}.a2a_button_facebook_like iframe{max-width:none}</style><style type="text/css">.drift-conductor-item iframe,
+.drift-frame-controller {
+  display: block;
+  min-width: 0;
+  max-width: none;
+  min-height: 0;
+  max-height: none;
+}
+
+.drift-conductor-item iframe {
+  border: none !important;
+  background: transparent !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+}
+
+.drift-conductor-item.with-transition {
+  -webkit-transition: opacity .5s ease, -webkit-transform .5s ease;
+  transition: opacity .5s ease, -webkit-transform .5s ease;
+  -o-transition: opacity .5s ease, -o-transform .5s ease;
+  -moz-transition: opacity .5s ease, transform .5s ease, -moz-transform .5s ease;
+  transition: opacity .5s ease, transform .5s ease;
+  transition: opacity .5s ease, transform .5s ease, -webkit-transform .5s ease, -moz-transform .5s ease, -o-transform .5s ease;
+}
+
+.drift-frame-chat.with-transition.drift-frame-chat__takeover {
+  -webkit-transition: opacity .5s ease;
+  -o-transition: opacity .5s ease;
+  -moz-transition: opacity .5s ease;
+  transition: opacity .5s ease;
+}
+
+.drift-conductor-item.with-height-transition {
+  -webkit-transition: max-height .5s ease, opacity .5s ease, -webkit-transform .5s ease;
+  transition: max-height .5s ease, opacity .5s ease, -webkit-transform .5s ease;
+  -o-transition: max-height .5s ease, opacity .5s ease, -o-transform .5s ease;
+  -moz-transition: max-height .5s ease, opacity .5s ease, transform .5s ease, -moz-transform .5s ease;
+  transition: max-height .5s ease, opacity .5s ease, transform .5s ease;
+  transition: max-height .5s ease, opacity .5s ease, transform .5s ease, -webkit-transform .5s ease, -moz-transform .5s ease, -o-transform .5s ease;
+}
+
+.drift-conductor-item {
+  -webkit-transform: translateZ(0);
+     -moz-transform: translateZ(0);
+          transform: translateZ(0);
+}
+
+.drift-frame-controller {
+  bottom: 24px;
+}
+
+.drift-frame-controller-align-left {
+  left: 24px;
+}
+
+.drift-frame-controller-align-right {
+  right: 24px;
+}
+
+.drift-frame-chat:not(iframe) {
+  bottom: -webkit-calc(12px + 52px + 24px);
+  bottom: -moz-calc(12px + 52px + 24px);
+  bottom: calc(12px + 52px + 24px); /* vertical margin x 2 + widget icon size*/
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  opacity: 0;
+  visibility: hidden;
+
+  -webkit-transform: translateY(88px);
+
+     -moz-transform: translateY(88px);
+
+      -ms-transform: translateY(88px);
+
+       -o-transform: translateY(88px);
+
+          transform: translateY(88px);
+}
+
+.drift-frame-chat:not(iframe).drift-chat-open {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0px);
+     -moz-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+       -o-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.drift-frame-chat.drift-frame-chat__takeover:not(iframe):not(.drift-frame--mobile) {
+  min-width: 600px;
+}
+
+.drift-frame-chat-align-left {
+  left: 12px;
+}
+
+.drift-frame-chat-align-right {
+  right: 12px;
+}
+
+.drift-frame-takeover,
+.drift-frame-landingPage,
+.drift-frame-chat__takeover {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.drift-frame-chat__takeover.hide-frame {
+  visibility: hidden;
+}
+
+.drift-frame-emailCapture {
+  bottom: 0;
+  height: -webkit-calc(100% + 30px);
+  height: -moz-calc(100% + 30px);
+  height: calc(100% + 30px);
+}
+
+.drift-frame-emailCapture-align-left {
+  left: 0;
+}
+
+.drift-frame-emailCapture-align-right {
+  right: 0;
+}
+
+.drift-frame-slider {
+  bottom: 18px;
+  height: -webkit-calc(100% + 20px);
+  height: -moz-calc(100% + 20px);
+  height: calc(100% + 20px);
+}
+
+.drift-frame-slider-align-left {
+  left: 96px;
+}
+
+.drift-frame-slider-align-right {
+  right: 96px;
+}
+
+.drift-frame--mobile.drift-frame-slider-align-left {
+  left: 68px;
+}
+
+.drift-frame--mobile.drift-frame-slider-align-right {
+  right: 68px;
+}
+
+.drift-widget-content-box {
+  background: rgba(0,0,0,.5);
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  z-index: 2147483647;
+  top: 0;
+  left: 0;
+}
+
+.drift-widget-content-box > * {
+  margin: 0 auto;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+     -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+       -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  max-height: 80%;
+
+}
+
+@media
+(max-height: 685px),
+(min-width: 369px) and (max-width: 380px),
+(max-width: 367px),
+
+(min-device-width: 320px)
+and (max-device-width: 480px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: portrait)
+
+{
+  .drift-frame--mobile.drift-frame-chat.drift-chat-open {
+    bottom: 0 !important;
+    right: 0;
+    left: 0;
+    z-index: 2147483647 !important;
+  }
+
+  .drift-frame--mobile.drift-frame-controller {
+    bottom: 0;
+  }
+
+  .drift-frame--mobile.drift-frame-controller.drift-frame-controller-align-left {
+    left: 0;
+  }
+
+  .drift-frame--mobile.drift-frame-controller.drift-frame-controller-align-right {
+    right: 0;
+  }
+
+
+  .drift-frame--mobile.drift-frame-controller.drift-chat-open {
+    display: none;
+  }
+
+  .drift-frame--mobile.drift-frame-slider {
+    bottom: 0;
+    max-width: 320px;
+  }
+
+  .drift-frame--mobile iframe.drift-frame-chat {
+    width: 1px !important;
+    min-width: 100%;
+
+    height: 1px !important;
+    min-height: 100%;
+  }
+
+  html.drift-widget-parent--chat-open,
+  html.drift-widget-parent--chat-open > body {
+    height: 100vh !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    position: static !important;
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  .drift-frame--mobile.drift-frame-controller.drift-chat-open {
+    display: none;
+  }
+
+  .drift-frame--mobile.drift-frame-controller {
+    bottom: 0;
+  }
+
+  .drift-frame--mobile.drift-frame-controller-align-right {
+    right: 0;
+  }
+
+  .drift-frame--mobile.drift-frame-controller-align-left {
+    left: 0;
+  }
+}
+
+.drift-frame-chat.widget--xs.drift-chat-open {
+  bottom: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+}
+
+.drift-frame-controller.widget--xs.drift-chat-open {
+  display: none;
+}
+
+</style><script async="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/modules.6a5da0d590df764ca613.js.завантаження" charset="utf-8"></script><style type="text/css">iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;}</style><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/configs.php" async="" defer=""></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/configs(1).php" async="" defer=""></script></head>
+<body class="path-node page-node-type-article lang-en eu-cookie-compliance-status-2">
+<a href="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog#main-content" class="visually-hidden focusable skip-link">
+  Skip to main content
+</a>
+<noscript aria-hidden="true"><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TK7GXJ2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas="">
+    
+
+<div class="site">
+  <a id="main-content" tabindex="-1"></a>
+
+  <main class="site-main" role="main">
+    
+
+
+  <div class="region region--header-top">
+      <div class="region__inner u-container">
+    <a class="logo-link" href="https://itextpdf.com/">
+      <span class="accessibly-hidden">iText pdf library</span>
+      <svg aria-labelledby="itext-logo-title" id="itext-logo" role="img" data-name="itext-logo" class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 34.5">
+        <path fill="#F99E27" d="M6.1 33.3c-.7.7-1.5 1-2.5 1s-1.8-.4-2.5-1c-.7-.7-1-1.5-1-2.5v-27c0-1 .4-1.8 1-2.5.7-.7 1.5-1 2.5-1s1.8.4 2.5 1c.7.7 1 1.5 1 2.5v27.1c.1.9-.3 1.7-1 2.4z"></path>
+        <path fill="#044A76" d="M66.8 1.2c.7.7 1 1.5 1 2.5s-.4 1.9-1 2.5c-.7.7-1.5 1-2.5 1H43.7v23.5c0 1-.4 1.9-1 2.5-.7.7-1.5 1-2.5 1s-1.9-.4-2.5-1c-.7-.7-1-1.5-1-2.5V7.3H16.5c-.9-.1-1.7-.5-2.3-1.2-.7-.7-.9-1.5-.9-2.5s.4-1.8 1-2.5c.7-.7 1.5-1 2.5-1h47.5c1 0 1.8.3 2.5 1.1zm121.1 26.4L170 17.3 187.9 7c.9-.5 1.5-1.3 1.7-2.2.3-1 .1-2-.4-2.8-.5-.9-1.3-1.5-2.3-1.7-1-.3-2-.1-2.9.4l-21.7 12.5L140.6.6c-.9-.5-1.9-.7-2.9-.4s-1.8.8-2.3 1.7c-.5.9-.7 1.8-.4 2.8.3 1 .9 1.7 1.7 2.2l17.9 10.3-17.9 10.3c-.9.5-1.5 1.3-1.7 2.2-.3 1-.1 2 .4 2.8.5.9 1.3 1.5 2.3 1.7s2 .1 2.9-.4l21.7-12.5L184 33.8c.9.5 1.9.7 2.9.4 1-.2 1.8-.8 2.3-1.7.5-.9.7-1.8.4-2.8-.3-.8-.9-1.6-1.7-2.1z"></path>
+        <path d="M125.1 7.3H77.5c-2 0-3.6-1.6-3.6-3.6S75.5.1 77.5.1h47.6c2 0 3.6 1.6 3.6 3.6.1 2-1.5 3.6-3.6 3.6zm0 27.1H77.5c-2 0-3.6-1.6-3.6-3.6s1.6-3.6 3.6-3.6h47.6c2 0 3.6 1.6 3.6 3.6.1 2-1.5 3.6-3.6 3.6zm0-13.6H77.5c-2 0-3.6-1.6-3.6-3.6s1.6-3.6 3.6-3.6h47.6c2 0 3.6 1.6 3.6 3.6.1 2-1.5 3.6-3.6 3.6z" fill="#F99E27"></path>
+        <path fill="#044A76" d="M249 1.2c.7.7 1 1.5 1 2.5s-.4 1.9-1 2.5c-.7.7-1.5 1-2.5 1H226v23.5c0 1-.4 1.9-1 2.5-.7.7-1.5 1-2.5 1s-1.9-.4-2.5-1c-.7-.7-1-1.5-1-2.5V7.3h-20c-.9-.1-1.7-.5-2.3-1.2-.7-.7-.9-1.5-.9-2.5s.4-1.8 1-2.5c.7-.7 1.5-1 2.5-1h47.5c.6 0 1.5.3 2.2 1.1z"></path>
+        <title id="itext-logo-title">Home</title>
+      </svg>
+    </a>
+    <div class="header-ui bg-grey--light">
+      
+
+
+
+<nav role="navigation" aria-labelledby="block-compony-topmenu-menu" id="block-compony-topmenu" class="block block-menu navigation menu--top-menu">
+            
+  <span class="visually-hidden" id="block-compony-topmenu-menu">Top menu</span>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="https://itextpdf.com/open-source-statement" title="Read our Open-Source statement" data-drupal-link-system-path="node/15382">Open-Source</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/demos" title="iText 7 Demo Lab" data-drupal-link-system-path="node/13976">Demo Lab</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://kb.itextpdf.com/home" target="_blank" title="iText Knowledge Base">Knowledge Base</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/support" target="_self" title="Link to the support page" data-drupal-link-system-path="node/1">Support</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/blog" title="Catch up on our latest news and events" data-drupal-link-system-path="blog">Blog</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/en/jobs" title="Careers">Careers</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/contact-us" target="_self" title="link to the contact us page" data-drupal-link-system-path="node/2">Contact</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+
+
+<div class="views-exposed-form block block--views-exposed-filter-blocks block--views-exposed-filter-blocks-block block--views-exposed-filter-block-global" data-drupal-selector="views-exposed-form-itext-search-itext-search" id="block-views-exposed-filter-block-global">
+  
+
+    <!-- don't print a title -->
+
+  
+
+      
+
+
+  
+
+  <button class="search-toggle bg-grey--light js-processed" aria-label="open global site search modal">
+    <svg aria-hidden="true" x="0px" y="0px" viewBox="0 0 1000 1000">
+      <g>
+        <path d="M990,900.9c0,89.1-89.1,89.1-89.1,89.1L646,735.1c-66.1,48-147.2,76.7-235.1,76.7C189.5,811.8,10,632.3,10,410.9C10,189.5,189.5,10,410.9,10c221.4,0,400.9,179.5,400.9,400.9c0,88-28.7,169-76.7,235.1L990,900.9z M410.9,99.1c-172.2,0-311.8,139.6-311.8,311.8s139.6,311.8,311.8,311.8s311.8-139.6,311.8-311.8C722.7,238.7,583.1,99.1,410.9,99.1z"></path>
+      </g>
+    </svg>
+  </button>
+
+
+
+<form action="https://itextpdf.com/search" method="get" id="views-exposed-form-itext-search-itext-search" accept-charset="UTF-8" class="form form--views-exposed-form form-- form--views-exposed-form-itext-search-itext-search">
+    <div role="dialog" aria-modal="true">
+    <button type="button" name="button" class="search-close bg-orange" aria-label="close global site search modal">
+      <svg aria-hidden="true" x="0px" y="0px" viewBox="0 0 1000 1000">
+        <g>
+          <path d="M964.7,157.6L622.3,500l342.4,342.4l0,0c15.7,15.7,25.3,37.3,25.3,61.1c0,47.7-38.7,86.5-86.5,86.5c-23.9,0-45.5-9.7-61.1-25.3l0,0L500,622.3L157.6,964.7l0,0C142,980.3,120.3,990,96.5,990C48.7,990,10,951.3,10,903.5c0-23.9,9.7-45.5,25.3-61.1l0,0L377.7,500L35.3,157.6l0,0C19.7,142,10,120.3,10,96.5C10,48.7,48.7,10,96.5,10c23.9,0,45.5,9.7,61.1,25.3l0,0L500,377.7L842.4,35.3l0,0C858,19.7,879.7,10,903.5,10c47.8,0,86.5,38.7,86.5,86.5C990,120.3,980.3,142,964.7,157.6L964.7,157.6z"></path>
+        </g>
+      </svg>
+    </button>
+
+    <div class="form__inner">
+      <div class="form--inline clearfix">
+  
+
+
+<div class="js-form-item form-item js-form-type-search form-item--search js-form-item-query form-item--query form-no-label">
+  
+  
+      
+    
+  <input placeholder="Search" data-drupal-selector="edit-query" type="search" id="edit-query" name="query" value="" size="30" maxlength="128" class="form-search" aria-label="Enter your search query">
+
+
+        
+  
+  
+  </div>
+
+  <input data-drupal-selector="edit-utm-source" type="hidden" name="utm_source" value="google">
+
+  <input data-drupal-selector="edit-utm-medium" type="hidden" name="utm_medium" value="organic">
+
+  <input data-drupal-selector="edit-utm-campaign" type="hidden" name="utm_campaign" value="(organic)">
+
+  <input data-drupal-selector="edit-utm-term" type="hidden" name="utm_term" value="(not%20provided)">
+
+  <input data-drupal-selector="edit-utm-content" type="hidden" name="utm_content" value="">
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions--2">
+          <button class="button--search-icon-only button js-form-submit form-submit" data-drupal-selector="edit-submit-itext-search" type="submit" id="edit-submit-itext-search" value="Apply">
+      <span>Apply</span>
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+        <path d="M990 900.9c0 89.1-89.1 89.1-89.1 89.1L646 735.1c-66.1 48-147.2 76.7-235.1 76.7C189.5 811.8 10 632.3 10 410.9 10 189.5 189.5 10 410.9 10c221.4 0 400.9 179.5 400.9 400.9 0 88-28.7 169-76.7 235.1L990 900.9zM410.9 99.1c-172.2 0-311.8 139.6-311.8 311.8s139.6 311.8 311.8 311.8 311.8-139.6 311.8-311.8c0-172.2-139.6-311.8-311.8-311.8z"></path>
+      </svg>
+    </button>
+  </div>
+
+</div>
+
+    </div>
+  </div>
+</form>
+
+  <div class="search-overlay"></div>
+
+  </div>
+
+
+    </div>
+  </div>
+  </div>
+
+
+
+    
+
+
+  <div class="region region--header-bottom">
+      <div class="region__inner u-container">
+    
+
+
+
+<nav role="navigation" aria-labelledby="block-compony-main-menu-menu" id="block-compony-main-menu" class="block block-menu navigation menu--main megamenu">
+            
+  <span class="visually-hidden" id="block-compony-main-menu-menu">Main navigation</span>
+  
+
+  <button class="menu-toggle accessible-megamenu-toggle" aria-expanded="false" aria-pressed="false" aria-controls="accessible-megamenu-1658981461189-1">
+    <span class="accessibly-hidden sr-only">Toggle Navigation</span>
+    <span></span><span></span><span></span>
+  </button>
+
+        
+
+  <ul class="menu menu-level-0 js-menu" id="accessible-megamenu-1658981461189-1">
+      
+    <li class="menu-item menu-item--expanded">
+      <a href="https://itextpdf.com/products" title="Discover our complete offer of PDF functionalities" data-drupal-link-system-path="products" id="accessible-megamenu-1658981461201-2" role="button" aria-controls="accessible-megamenu-1658981461201-3" aria-expanded="false" tabindex="0">Products</a>
+                    
+
+  <div class="menu_link_content menu-link-contentmain view-mode-default menu-dropdown menu-dropdown-0 menu-type-default" id="accessible-megamenu-1658981461201-3" role="region" aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1658981461201-2">
+        
+<div class="megamenu__block--one">
+      
+  <ul class="menu menu-level-1">
+      
+    <li class="menu-item">
+      <a href="https://itextpdf.com/" title="Products placeholder" data-drupal-link-system-path="&lt;front&gt;">Products placeholder</a>
+                    
+
+
+          </li>
+    </ul>
+
+
+
+
+
+  <div class="field field--name-field-mega-menu-lable field--type-string field__items">
+    
+                  Products
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-sections field--type-entity-reference-revisions field__items">
+    
+                  
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  PDF SDK
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/products/itext-7">iText 7 Suite</a>
+              <a href="https://itextpdf.com/products/itext-7/itext-7-core">iText 7 Core</a>
+              <a href="https://itextpdf.com/products/itext-7/itext-7-core" class="no-link">Add-ons</a>
+              <a href="https://itextpdf.com/products/itext-7/pdfcalligraph" class="child">pdfCalligraph</a>
+              <a href="https://itextpdf.com/en/products/itext-7/convert-html-css-to-pdf-pdfhtml" class="child" title="Convert HTML &amp; CSS to PDF">pdfHTML</a>
+              <a href="https://itextpdf.com/en/products/itext-7/pdf-ocr-text-recognition" class="child" title="PDF OCR text recognition">pdfOCR</a>
+              <a href="https://itextpdf.com/products/itext-7/convert-ms-office-to-pdf-pdfoffice" class="child">pdfOffice</a>
+              <a href="https://itextpdf.com/products/itext-7/compress-pdf-pdfoptimizer" class="child">pdfOptimizer</a>
+              <a href="https://itextpdf.com/en/products/itext-7/convert-pdf-to-image-pdfrender" class="child" title="Convert PDF to images">pdfRender</a>
+              <a href="https://itextpdf.com/products/itext-7/pdf-redaction-pdfsweep" class="child">pdfSweep</a>
+              <a href="https://itextpdf.com/products/itext-7/flatten-pdf-pdfxfa" class="child">pdfXFA</a>
+              <a href="https://itextpdf.com/products/rups" class="child">RUPS</a>
+              <a href="https://itextpdf.com/demos">Try the iText 7 Demo Lab</a>
+              <a href="https://itextpdf.com/en/products/itext-5-legacy">iText 5 (Legacy)</a>
+              <a href="https://itextpdf.com/en/products/itextsharp">iTextSharp (Legacy)</a>
+              <a href="https://itextpdf.com/en/products/itext-2-legacy">iText 2 (Legacy)</a>
+            </div>
+
+
+      </div>
+
+
+              
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  Document Solutions
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/products/itext-pdf2data/extract-your-content-from-pdf">iText pdf2Data</a>
+              <a href="https://itextpdf.com/products/itext-dito">iText DITO</a>
+              <a href="https://itextpdf.com/blog/itext-news/itext-dito-alternative-pdf-forms" class="no-link">Components</a>
+              <a href="https://itextpdf.com/itext-dito-api" class="child">iText DITO SDK/API</a>
+              <a href="https://itextpdf.com/itext-dito-editor" class="child">iText DITO Editor</a>
+              <a href="https://itextpdf.com/itext-dito-manager" class="child">iText DITO Manager</a>
+            </div>
+
+
+      </div>
+
+
+            </div>
+
+
+  </div>
+
+<div class="megamenu__block--two">
+      
+
+
+  <div class="field field--name-field-menu-in-spotlight-item field--type-entity-reference field__items">
+    
+                  
+
+  
+  
+
+  <article role="article" about="/blog/itext-news/pdfoffice-conversion-microsoft-office-word-into-pdf" typeof="schema:Article" class="node node--type-article article article--promoted article--sticky node--spotlight article--spotlight">
+    
+
+      
+
+
+  <div class="field field--name-field-main-image field--type-entity-reference field__items">
+    
+                  
+
+<article class="media media--image media--image--wide-teaser">
+  
+            
+
+
+  <div class="field field--name-field-media-image field--type-image field__items">
+          <div class="field__label visually-hidden">Image</div>
+    
+                    <img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/Teaser - 762x296_2.png" width="762" height="296" alt="teaser pdfOffice" loading="lazy" typeof="foaf:Image" class="image-style-wide-teaser">
+
+
+
+            </div>
+
+
+      </article>
+
+
+            </div>
+
+
+
+      <span property="schema:name" content="Introducing iText pdfOffice:  Enabling high-quality, native conversion of Microsoft Office documents to PDF" class="rdf-meta hidden"></span>
+  <span property="schema:interactionCount" content="UserComments:0" class="rdf-meta hidden"></span>
+
+
+    <div class="article__inner node__inner">
+        <span class="spotlight-title"><span property="schema:name" class="field field--name-title field--type-string field--label-hidden">Introducing iText pdfOffice:  Enabling high-quality, native conversion of Microsoft Office documents to PDF</span>
+</span>
+
+  
+
+
+  <div class="field field--name-field-teaser-text field--type-string-long field__items">
+    
+                  iText expands its iText 7 PDF library with their latest product, a Java add-on, allowing developers to programmatically convert documents and easily integrate with existing iText workflows.
+            </div>
+
+
+
+  <a class="link-with-angle text-orange" href="https://itextpdf.com/blog/itext-news/pdfoffice-conversion-microsoft-office-word-into-pdf" rel="bookmark">
+    <span>Read more</span>
+    <svg aria-hidden="true" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path>
+    </svg>
+  </a>
+
+                        </div>
+  </article>
+
+
+            </div>
+
+
+  </div>
+
+  </div>
+
+          </li>
+      
+    <li class="menu-item menu-item--expanded">
+      <a href="https://itextpdf.com/solutions" title="Solving all your document needs" data-drupal-link-system-path="node/10471" id="accessible-megamenu-1658981461204-4" role="button" aria-controls="accessible-megamenu-1658981461204-5" aria-expanded="false" tabindex="0">Solutions</a>
+                    
+
+  <div class="menu_link_content menu-link-contentmain view-mode-default menu-dropdown menu-dropdown-0 menu-type-default" id="accessible-megamenu-1658981461204-5" role="region" aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1658981461204-4">
+        
+<div class="megamenu__block--one">
+      
+  <ul class="menu menu-level-1">
+      
+    <li class="menu-item">
+      <a href="https://itextpdf.com/" data-drupal-link-system-path="&lt;front&gt;">Solutions placeholder</a>
+                    
+
+
+          </li>
+    </ul>
+
+
+
+
+
+  <div class="field field--name-field-mega-menu-lable field--type-string field__items">
+    
+                  Solutions
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-sections field--type-entity-reference-revisions field__items">
+    
+                  
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  Solving all your document needs
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/solutions/pdf-creation">PDF creation</a>
+              <a href="https://itextpdf.com/solutions/automation">Automate document workflows</a>
+              <a href="https://itextpdf.com/solutions/archiving-digital-documents-pdfa">Archiving digital documents with PDF/A</a>
+              <a href="https://itextpdf.com/solutions/universal-accessibility-pdfua">Universal Accessibility with PDF/UA</a>
+              <a href="https://itextpdf.com/en/solutions/pdf-security">PDF Security</a>
+              <a href="https://itextpdf.com/en/solutions/digital-signatures-pdf-documents">Digital signatures</a>
+              <a href="https://itextpdf.com/solutions/data-extraction">Data extraction</a>
+              <a href="https://itextpdf.com/solutions/itext-and-gdpr">General Data Protection Regulation (GDPR)</a>
+              <a href="https://itextpdf.com/solutions/itext-and-ccpa">California Consumer Privacy Act (CCPA)</a>
+              <a href="https://itextpdf.com/solutions/blockchain">Blockchain</a>
+              <a href="https://itextpdf.com/solutions">More</a>
+            </div>
+
+
+      </div>
+
+
+              
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  Solutions per industry
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/solutions">Solution tour</a>
+            </div>
+
+
+      </div>
+
+
+            </div>
+
+
+  </div>
+
+<div class="megamenu__block--two">
+      
+
+
+  <div class="field field--name-field-menu-in-spotlight-item field--type-entity-reference field__items">
+    
+                  
+
+  
+  
+
+  <article role="article" about="/blog/itext-news-technical-notes/itext-dito-23-now-available" typeof="schema:Article" class="node node--type-article article node--spotlight article--spotlight">
+    
+
+      
+
+
+  <div class="field field--name-field-main-image field--type-entity-reference field__items">
+    
+                  
+
+<article class="media media--image media--image--wide-teaser">
+  
+            
+
+
+  <div class="field field--name-field-media-image field--type-image field__items">
+          <div class="field__label visually-hidden">Image</div>
+    
+                    <img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/DITO_23_blog_new_teaser.png" width="762" height="296" alt="iText DITO 2.3 new teaser" loading="lazy" typeof="foaf:Image" class="image-style-wide-teaser">
+
+
+
+            </div>
+
+
+      </article>
+
+
+            </div>
+
+
+
+      <span property="schema:name" content="iText DITO 2.3 is now available" class="rdf-meta hidden"></span>
+  <span property="schema:interactionCount" content="UserComments:0" class="rdf-meta hidden"></span>
+
+
+    <div class="article__inner node__inner">
+        <span class="spotlight-title"><span property="schema:name" class="field field--name-title field--type-string field--label-hidden">iText DITO 2.3 is now available</span>
+</span>
+
+  
+
+
+  <div class="field field--name-field-teaser-text field--type-string-long field__items">
+    
+                  iText DITO 2.3, the latest version of our collaborative PDF creation solution has just been released. Read on for details on what's new in this version.
+            </div>
+
+
+
+  <a class="link-with-angle text-orange" href="https://itextpdf.com/blog/itext-news-technical-notes/itext-dito-23-now-available" rel="bookmark">
+    <span>Read more</span>
+    <svg aria-hidden="true" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path>
+    </svg>
+  </a>
+
+                        </div>
+  </article>
+
+
+            </div>
+
+
+  </div>
+
+  </div>
+
+          </li>
+      
+    <li class="menu-item menu-item--expanded">
+      <a href="https://itextpdf.com/partners" title="Become part of the iText community" data-drupal-link-system-path="partners" id="accessible-megamenu-1658981461206-6" role="button" aria-controls="accessible-megamenu-1658981461206-7" aria-expanded="false" tabindex="0">Developers</a>
+                    
+
+  <div class="menu_link_content menu-link-contentmain view-mode-default menu-dropdown menu-dropdown-0 menu-type-default" id="accessible-megamenu-1658981461206-7" role="region" aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1658981461206-6">
+        
+<div class="megamenu__block--one">
+      
+  <ul class="menu menu-level-1">
+      
+    <li class="menu-item">
+      <a href="https://itextpdf.com/" title="partners placeholders" data-drupal-link-system-path="&lt;front&gt;">partners placeholders</a>
+                    
+
+
+          </li>
+    </ul>
+
+
+
+
+
+  <div class="field field--name-field-mega-menu-lable field--type-string field__items">
+    
+                  iText Community
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-sections field--type-entity-reference-revisions field__items">
+    
+                  
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  Developer resource center
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/resources/downloads">Downloads</a>
+              <a href="https://itextpdf.com/resources/api-documentation">API Documentation</a>
+              <a href="https://itextpdf.com/support">Support</a>
+              <a href="https://kb.itextpdf.com/home" target="_blank">Knowledge base</a>
+              <a href="https://itextpdf.com/blog/technical-notes">Technical blog</a>
+            </div>
+
+
+      </div>
+
+
+              
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  Community
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/welcome-itext-community">iText Community </a>
+              <a href="https://itextpdf.com/start-contributing">Contribute to iText</a>
+              <a href="https://itextpdf.com/itext-community-guidelines">Community guidelines</a>
+              <a href="https://github.com/itext/" target="_blank" rel="noopener nofollow">iText on GitHub</a>
+              <a href="https://itextpdf.com/report-vulnerability">Report a vulnerability</a>
+            </div>
+
+
+      </div>
+
+
+            </div>
+
+
+  </div>
+
+<div class="megamenu__block--two">
+      
+
+
+  <div class="field field--name-field-menu-in-spotlight-item field--type-entity-reference field__items">
+    
+                  
+
+  
+  
+
+  <article role="article" about="/blog/itext-news-technical-notes/attacks-pdf-certification-and-what-you-can-do-about-them" typeof="schema:Article" class="node node--type-article article article--promoted article--sticky node--spotlight article--spotlight">
+    
+
+      
+
+
+  <div class="field field--name-field-main-image field--type-entity-reference field__items">
+    
+                  
+
+<article class="media media--image media--image--wide-teaser">
+  
+            
+
+
+  <div class="field field--name-field-media-image field--type-image field__items">
+          <div class="field__label visually-hidden">Image</div>
+    
+                    <img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/Teaser - 762x296_6.png" width="762" height="296" alt="PDF under attack" loading="lazy" typeof="foaf:Image" class="image-style-wide-teaser">
+
+
+
+            </div>
+
+
+      </article>
+
+
+            </div>
+
+
+
+      <span property="schema:name" content="Attacks on PDF certification, and what you can do about them" class="rdf-meta hidden"></span>
+  <span property="schema:interactionCount" content="UserComments:0" class="rdf-meta hidden"></span>
+
+
+    <div class="article__inner node__inner">
+        <span class="spotlight-title"><span property="schema:name" class="field field--name-title field--type-string field--label-hidden">Attacks on PDF certification, and what you can do about them</span>
+</span>
+
+  
+
+
+  <div class="field field--name-field-teaser-text field--type-string-long field__items">
+    
+                  In May 2021, a group of researchers at the Ruhr University Bochum (RUB) published an IEEE symposium paper on problems with certification signatures in PDF. The authors’ findings are summarized on the PDF Insecurity website. Since iText’s products are often used as part of digital signing workflows (including to create certification signatures), we felt compelled to comment. In this blog post, we’ll take you through some background on these new attacks, and explain what you can do about them.
+            </div>
+
+
+
+  <a class="link-with-angle text-orange" href="https://itextpdf.com/blog/itext-news-technical-notes/attacks-pdf-certification-and-what-you-can-do-about-them" rel="bookmark">
+    <span>Read more</span>
+    <svg aria-hidden="true" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path>
+    </svg>
+  </a>
+
+                        </div>
+  </article>
+
+
+            </div>
+
+
+  </div>
+
+  </div>
+
+          </li>
+      
+    <li class="menu-item menu-item--expanded">
+      <a href="https://itextpdf.com/resources" title="Explore our documentation at the resource center" data-drupal-link-system-path="node/13076" id="accessible-megamenu-1658981461210-8" role="button" aria-controls="accessible-megamenu-1658981461210-9" aria-expanded="false" tabindex="0">Resources</a>
+                    
+
+  <div class="menu_link_content menu-link-contentmain view-mode-default menu-dropdown menu-dropdown-0 menu-type-default" id="accessible-megamenu-1658981461210-9" role="region" aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1658981461210-8">
+        
+<div class="megamenu__block--one">
+      
+  <ul class="menu menu-level-1">
+      
+    <li class="menu-item">
+      <a href="https://itextpdf.com/" title="Menu link title" data-drupal-link-system-path="&lt;front&gt;">Resources placeholder</a>
+                    
+
+
+          </li>
+    </ul>
+
+
+
+
+
+  <div class="field field--name-field-mega-menu-sections field--type-entity-reference-revisions field__items">
+    
+                  
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  Insights
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/resources/books">eBooks</a>
+              <a href="https://itextpdf.com/resources/case-studies">Case studies</a>
+              <a href="https://itextpdf.com/resources/whitepapers">White papers</a>
+              <a href="https://itextpdf.com/events" target="_blank">Webinars</a>
+              <a href="https://itextpdf.com/resources/marketing-collateral">Marketing collateral</a>
+              <a href="https://itextpdf.com/blog">Blog</a>
+            </div>
+
+
+      </div>
+
+
+            </div>
+
+
+  </div>
+
+<div class="megamenu__block--two">
+      
+
+
+  <div class="field field--name-field-menu-in-spotlight-item field--type-entity-reference field__items">
+    
+                  
+
+  
+  
+
+  <article role="article" about="/blog/technical-notes/pdf-portfolios-and-how-use-them" typeof="schema:Article" class="node node--type-article article article--promoted node--spotlight article--spotlight">
+    
+
+      
+
+
+  <div class="field field--name-field-main-image field--type-entity-reference field__items">
+    
+                  
+
+<article class="media media--image media--image--wide-teaser">
+  
+            
+
+
+  <div class="field field--name-field-media-image field--type-image field__items">
+          <div class="field__label visually-hidden">Image</div>
+    
+                    <img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/teaser_5.png" width="762" height="296" alt="PDF portfolio" loading="lazy" typeof="foaf:Image" class="image-style-wide-teaser">
+
+
+
+            </div>
+
+
+      </article>
+
+
+            </div>
+
+
+
+      <span property="schema:name" content="PDF portfolios and how to use them" class="rdf-meta hidden"></span>
+  <span property="schema:interactionCount" content="UserComments:0" class="rdf-meta hidden"></span>
+
+
+    <div class="article__inner node__inner">
+        <span class="spotlight-title"><span property="schema:name" class="field field--name-title field--type-string field--label-hidden">PDF portfolios and how to use them</span>
+</span>
+
+  
+
+
+  <div class="field field--name-field-teaser-text field--type-string-long field__items">
+    
+                  Some tips and use cases for using PDF portfolios to package many different files in a single PDF
+            </div>
+
+
+
+  <a class="link-with-angle text-orange" href="https://itextpdf.com/blog/technical-notes/pdf-portfolios-and-how-use-them" rel="bookmark">
+    <span>Read more</span>
+    <svg aria-hidden="true" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path>
+    </svg>
+  </a>
+
+                        </div>
+  </article>
+
+
+            </div>
+
+
+  </div>
+
+  </div>
+
+          </li>
+      
+    <li class="menu-item menu-item--expanded">
+      <a href="https://itextpdf.com/how-buy" title="Decide upon which license works best for you" data-drupal-link-system-path="node/1756" id="accessible-megamenu-1658981461213-10" role="button" aria-controls="accessible-megamenu-1658981461213-11" aria-expanded="false" tabindex="0">Licensing</a>
+                    
+
+  <div class="menu_link_content menu-link-contentmain view-mode-default menu-dropdown menu-dropdown-0 menu-type-default" id="accessible-megamenu-1658981461213-11" role="region" aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1658981461213-10">
+        
+<div class="megamenu__block--one">
+      
+  <ul class="menu menu-level-1">
+      
+    <li class="menu-item">
+      <a href="https://itextpdf.com/" data-drupal-link-system-path="&lt;front&gt;">How to buy placeholder </a>
+                    
+
+
+          </li>
+    </ul>
+
+
+
+
+
+  <div class="field field--name-field-mega-menu-lable field--type-string field__items">
+    
+                  Licenses
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-sections field--type-entity-reference-revisions field__items">
+    
+                  
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  Discover our license models
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/how-buy/agpl-license">Open Source AGPL </a>
+              <a href="https://itextpdf.com/how-buy">Commercial licenses</a>
+            </div>
+
+
+      </div>
+
+
+              
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  Agreements
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/how-buy/legal/software-license-agreement-sla">Software license agreements</a>
+              <a href="https://itextpdf.com/how-buy/legal/itext-contributor-license-agreement">Contributor license agreement</a>
+              <a href="https://itextpdf.com/how-buy/paid-support-agreement">Support agreement</a>
+              <a href="https://itextpdf.com/how-buy/legal/privacy-policy">Privacy policy</a>
+            </div>
+
+
+      </div>
+
+
+            </div>
+
+
+  </div>
+
+<div class="megamenu__block--two">
+      
+
+
+  <div class="field field--name-field-menu-in-spotlight-item field--type-entity-reference field__items">
+    
+                  
+
+  
+  
+
+  <article role="article" about="/get-started" class="node node--type-marketing-campaign marketing-campaign node--spotlight marketing-campaign--spotlight">
+    
+
+      
+
+
+  <div class="field field--name-field-main-image field--type-entity-reference field__items">
+    
+                  
+
+<article class="media media--image media--image--_80-width">
+  
+            
+
+
+  <div class="field field--name-field-media-image field--type-image field__items">
+          <div class="field__label visually-hidden">Image</div>
+    
+                    <img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/Resources - icons_567x506px_V2_Download Free trail.png" width="567" height="506" alt="Get Your Free Trial" loading="lazy" typeof="foaf:Image" class="image-style-scaled-480-width">
+
+
+
+            </div>
+
+
+      </article>
+
+
+            </div>
+
+
+
+    
+
+    <div class="marketing-campaign__inner node__inner">
+      
+  
+
+
+  <div class="field field--name-field-teaser-text field--type-string-long field__items">
+    
+                  With our 30-day free trial, you can test the iText programmable PDF library and discover how it fits your needs.
+            </div>
+
+
+
+  <a class="link-with-angle text-orange" href="https://itextpdf.com/get-started" rel="bookmark">
+    <span class="field field--name-title field--type-string field--label-hidden">Get started</span>
+
+    <svg aria-hidden="true" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path>
+    </svg>
+  </a>
+
+                        </div>
+  </article>
+
+
+            </div>
+
+
+  </div>
+
+  </div>
+
+          </li>
+      
+    <li class="menu-item menu-item--expanded">
+      <a href="https://itextpdf.com/about-us" title="Become part of the iText family" data-drupal-link-system-path="node/1686" id="accessible-megamenu-1658981461216-12" role="button" aria-controls="accessible-megamenu-1658981461216-13" aria-expanded="false" tabindex="0">Company</a>
+                    
+
+  <div class="menu_link_content menu-link-contentmain view-mode-default menu-dropdown menu-dropdown-0 menu-type-default" id="accessible-megamenu-1658981461216-13" role="region" aria-expanded="false" aria-hidden="true" aria-labelledby="accessible-megamenu-1658981461216-12">
+        
+<div class="megamenu__block--one">
+      
+  <ul class="menu menu-level-1">
+      
+    <li class="menu-item">
+      <a href="https://itextpdf.com/" title="About placeholder" data-drupal-link-system-path="&lt;front&gt;">About placeholder</a>
+                    
+
+
+          </li>
+    </ul>
+
+
+
+
+
+  <div class="field field--name-field-mega-menu-lable field--type-string field__items">
+    
+                  About iText
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-sections field--type-entity-reference-revisions field__items">
+    
+                  
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  iText Group
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/about-us">About us</a>
+              <a href="https://itextpdf.com/itext-history-page">History</a>
+              <a href="https://itextpdf.com/awards">Awards</a>
+              <a href="https://itextpdf.com/executive-leadership">Leadership</a>
+              <a href="https://itextpdf.com/jobs">Careers</a>
+              <a href="https://itextpdf.com/corporate-social-responsibility">Corporate Social Responsibility</a>
+              <a href="https://itextpdf.com/en/iso-270012017-certification">Data, Privacy and Security</a>
+              <a href="https://itextpdf.com/offices">Offices</a>
+              <a href="https://itextpdf.com/en/blog/itext-news/itext-software-receives-isoiec-270012017-certification">ISO/IEC 27001:2017 Certified</a>
+            </div>
+
+
+      </div>
+
+
+              
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  News &amp; Events
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/blog">News</a>
+              <a href="https://itextpdf.com/events">Events</a>
+            </div>
+
+
+      </div>
+
+
+              
+  
+
+  <div class="paragraph paragraph--mega-menu-list-items paragraph--mega-menu-list-items--default">
+          
+
+
+  <div class="field field--name-field-mega-menu-list-heading field--type-string field__items">
+    
+                  iText partnerships
+            </div>
+
+
+
+
+  <div class="field field--name-field-mega-menu-list-links field--type-link field__items">
+    
+                  <a href="https://itextpdf.com/partners">Find a reseller</a>
+              <a href="https://itextpdf.com/partners/become-partner">iText Partnership Programs</a>
+              <a href="https://itextpdf.com/en/partners/become-partner/request">Become an iText reseller</a>
+              <a href="https://itextpdf.com/partners/become-partner/developer-platform">Become a development partner</a>
+            </div>
+
+
+      </div>
+
+
+            </div>
+
+
+  </div>
+
+<div class="megamenu__block--two">
+      
+
+
+  <div class="field field--name-field-menu-in-spotlight-item field--type-entity-reference field__items">
+    
+                  
+
+  
+  
+
+  <article role="article" about="/blog/itext-news/were-hiring" typeof="schema:Article" class="node node--type-article article node--spotlight article--spotlight">
+    
+
+      
+
+
+  <div class="field field--name-field-main-image field--type-entity-reference field__items">
+    
+                  
+
+<article class="media media--image media--image--wide-teaser">
+  
+            
+
+
+  <div class="field field--name-field-media-image field--type-image field__items">
+          <div class="field__label visually-hidden">Image</div>
+    
+                    <img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/Job%20banner (3)-min.png" width="762" height="296" alt="HR banner" loading="lazy" typeof="foaf:Image" class="image-style-wide-teaser">
+
+
+
+            </div>
+
+
+      </article>
+
+
+            </div>
+
+
+
+      <span property="schema:name" content="We&#39;re hiring!" class="rdf-meta hidden"></span>
+  <span property="schema:interactionCount" content="UserComments:0" class="rdf-meta hidden"></span>
+
+
+    <div class="article__inner node__inner">
+        <span class="spotlight-title"><span property="schema:name" class="field field--name-title field--type-string field--label-hidden">We're hiring!</span>
+</span>
+
+  
+
+
+  <div class="field field--name-field-teaser-text field--type-string-long field__items">
+    
+                  Are you looking for an interesting job opportunity?&nbsp;<br>
+<br>
+Discover all current open job opportunities.
+            </div>
+
+
+
+  <a class="link-with-angle text-orange" href="https://itextpdf.com/blog/itext-news/were-hiring" rel="bookmark">
+    <span>Read more</span>
+    <svg aria-hidden="true" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path>
+    </svg>
+  </a>
+
+                        </div>
+  </article>
+
+
+            </div>
+
+
+  </div>
+
+  </div>
+
+          </li>
+      
+    <li class="menu-item">
+      <a href="https://itextpdf.com/get-your-itext-license" class="menu-item--button button blue" title="Get your iText license" data-drupal-link-system-path="node/15405" id="accessible-megamenu-1658981461217-14">Pricing</a>
+                    
+
+
+          </li>
+      
+    <li class="menu-item">
+      <a href="https://itextpdf.com/get-started" class="menu-item--button button orange" title="Get started with iText technology" data-drupal-link-system-path="node/1796" id="accessible-megamenu-1658981461218-15">Try now</a>
+                    
+
+
+          </li>
+    </ul>
+
+
+  
+</nav>
+
+
+
+
+<nav role="navigation" aria-labelledby="block-topmenu-menu" id="block-topmenu" class="block block-menu navigation menu--top-menu" style="display: none;">
+            
+  <span class="visually-hidden" id="block-topmenu-menu">Top menu</span>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="https://itextpdf.com/open-source-statement" title="Read our Open-Source statement" data-drupal-link-system-path="node/15382">Open-Source</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/demos" title="iText 7 Demo Lab" data-drupal-link-system-path="node/13976">Demo Lab</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://kb.itextpdf.com/home" target="_blank" title="iText Knowledge Base">Knowledge Base</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/support" target="_self" title="Link to the support page" data-drupal-link-system-path="node/1">Support</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/blog" title="Catch up on our latest news and events" data-drupal-link-system-path="blog">Blog</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/en/jobs" title="Careers">Careers</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/contact-us" target="_self" title="link to the contact us page" data-drupal-link-system-path="node/2">Contact</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </div>
+  </div>
+
+
+
+    
+
+
+  <div class="region region--breadcrumb">
+      <div class="region__inner u-container">
+    
+
+
+<div id="block-compony-breadcrumbs" class="block block--system block--system-breadcrumb-block block--compony-breadcrumbs">
+  
+
+        
+  
+
+      
+  
+  <nav role="navigation" aria-labelledby="system-breadcrumb">
+    <span id="system-breadcrumb" class="visually-hidden">Breadcrumb</span>
+    <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                      <a href="https://itextpdf.com/">Home</a>
+                  </li>
+              <li class="breadcrumb-item">
+                      <a href="https://itextpdf.com/blog">blog</a>
+                  </li>
+              <li class="breadcrumb-item">
+                      <a href="https://itextpdf.com/blog/technical-notes">technical notes</a>
+                  </li>
+              <li class="breadcrumb-item">
+                      digital signatures universal application uwp itext reblog
+                  </li>
+          </ol>
+  </nav>
+
+  </div>
+
+
+  </div>
+  </div>
+
+
+
+                  <div class="u-container">
+          
+
+
+  <div class="region region--content-top">
+      <div class="region__inner">
+    
+
+
+
+
+<div id="block-itextpagetitlewithautor" class="block block--itext-core block--itext-page-title-with-author block--itextpagetitlewithautor">
+  
+
+        
+  
+
+      <div class="itext_intro_block"><h1 class="node__title">Digital Signatures in a Universal Application (UWP) with iText - reblog</h1>
+<div class="node__author"><div class="node__created_date">Tue - 11/27/2018</div>
+</div>
+<p class="node__body">Recently we found Paul Madary's blog post about digital signatures in a Univeral Application (UWP) with iText 7, and we wanted to share it.
+</p>
+</div>
+
+  </div>
+
+
+
+
+<div id="block-addtoanybuttons-2" class="block block--addtoany block--addtoany-block block--addtoanybuttons-2">
+  
+
+            <h2>Share this article</h2>
+      
+  
+
+      <span class="a2a_kit a2a_kit_size_25 addtoany_list" data-a2a-url="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog" data-a2a-title="Digital Signatures in a Universal Application (UWP) with iText - reblog" style="line-height: 25px;"><a class="a2a_button_facebook" target="_blank" href="https://itextpdf.com/#facebook" rel="nofollow noopener"><i class="fa-brands fa-facebook-f  fa-2x"></i></a><a class="a2a_button_twitter" target="_blank" href="https://itextpdf.com/#twitter" rel="nofollow noopener"><i class="fa-brands fa-twitter fa-2x"></i></a><a class="a2a_button_linkedin" target="_blank" href="https://itextpdf.com/#linkedin" rel="nofollow noopener"><i class="fa-brands fa-linkedin-in fa-2x"></i></a><a class="a2a_button_whatsapp" target="_blank" href="https://itextpdf.com/#whatsapp" rel="nofollow noopener"><i class="fa-brands fa-whatsapp fa-2x"></i></a><a class="a2a_button_email" target="_blank" href="https://itextpdf.com/#email" rel="nofollow noopener"><i class="fa-solid fa-envelope fa-2x"></i></a></span>
+  </div>
+
+
+  </div>
+  </div>
+
+
+        </div>
+          
+          <div class="u-container site-main__columns">
+      
+
+
+  <div class="region region--content">
+          <div data-drupal-messages-fallback="" class="hidden"></div>
+
+
+
+<div id="block-mainpagecontent" class="block block--system block--system-main-block block--mainpagecontent">
+  
+
+        
+  
+
+      
+
+  
+  
+
+
+  <article role="article" about="/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog" typeof="schema:Article" class="node node--type-article article node--full article--full">
+    
+
+              
+      <span property="schema:name" content="Digital Signatures in a Universal Application (UWP) with iText - reblog" class="rdf-meta hidden"></span>
+  <span property="schema:interactionCount" content="UserComments:0" class="rdf-meta hidden"></span>
+
+
+    <div class="article__inner node__inner">
+      
+  <div class="u-container">
+
+    
+
+
+  <div property="schema:text" class="wysiwyg-content clearfix text-formatted field field--name-body field--type-text-with-summary field__items">
+    
+                  <p>Recently we found Paul Madary's&nbsp;<a href="https://www.skylinetechnologies.com/Blog/Skyline-Blog/August_2018/electronic-digital-signatures-universal-app-itext" target="_blank" rel="noopener nofollow">blog post</a>&nbsp;about digital signatures in files in a UWP app with iText, and we wanted to share it. Paul gracefully agreed to let us do that, and as a bonus we upgraded the code to be usable out-of-the-box with iText 7.1.3. The only change needed is to the&nbsp;<code>SignDocumentSignature</code> method<span>.</span></p>
+
+<h3>What does it take to make electronic signatures legally binding?</h3>
+
+<p>In the United States, the main law governing electronic signatures is the Electronic Signatures in Global and National Commerce (ESIGN) act of 2000. There is also the Uniform Electronic Transactions Act (UETA), which has been adopted by 47 states. Those laws require the following criteria to be met to make an electronic signature legally binding:</p>
+
+<ul>
+	<li>
+	<p>Intent to sign</p>
+	</li>
+	<li>
+	<p>Consent to do business electronically</p>
+
+	<ul>
+		<li>
+		<p>Received UETA Consumer Consent Disclosures</p>
+		</li>
+		<li>
+		<p>Affirmatively agreed to use electronic records for the transaction</p>
+		</li>
+		<li>
+		<p>Has not withdrawn such consent</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p>Association of signature with the record</p>
+
+	<ul>
+		<li>
+		<p>System used to capture the transaction must keep an associated record that reflects the process by which the signature was created or generate a textual or graphic statement (which is added to the signed record) proving that it was executed with an electronic signature.</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p>Record retention</p>
+
+	<ul>
+		<li>
+		<p>Electronic signature records be capable of retention and accurate reproduction for reference by all parties or persons entitled to retain the contract or record.</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p>Opt-out clause</p>
+	</li>
+	<li>
+	<p>Signed copy of fully executed agreement</p>
+	</li>
+</ul>
+
+<h2>Electronic signatures and digital signatures...is there a difference?</h2>
+
+<p>In a word, YES! Although the terms are often used interchangeably, there is a difference between an electronic and digital signature.</p>
+
+<h3>Electronic Signature</h3>
+
+<p>It is the equivalent of a hand-written signature. It can be a client typing their name in a text box, checking an “I accept” checkbox, or some other process that records a person’s agreement to be bound by a contract. In the past, contracts would need to be printed out, signed, and stored. This could take days/weeks; but, with electronic signatures, it can be completed in minutes.</p>
+
+<h3>Digital Signature</h3>
+
+<p>It is more like having a notary public stamp a document assuring that the signatures are valid and that the document hasn’t been tampered with. Simply put, the electronic signature captures the person’s intent to enter into the agreement, and the digital signature is used to secure the data and verify the authenticity of the signed document.</p>
+
+<h3>Tell me more about a digital signature!</h3>
+
+<p>Digital signatures are typically used in Adobe PDF documents by individuals and organizations to prove who verified the document on a specific date/time and that the document hasn’t been modified since being signed.</p>
+
+<p>Based on the requirements and work flow associated with signing a contract, there can be one or more signatures on a single PDF document. The actual digital signature is a section of non-visible, hashed &amp; encrypted metadata embedded in the document using a certificate. In addition to the actual digital signature, an optional visible representation of the signature can also be included in the PDF document. The visible portion of the signature can include an image of the signature and/or a description of the signing certificate.</p>
+
+<p><img alt="signature example" height="166" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/signature_example.png" width="900"></p>
+
+<p><img alt="digital signature properties" height="564" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/digital_signature_properties.png" width="574"></p>
+
+<h2>What type of certificate do I need?</h2>
+
+<p>Depending on your needs, there are varying certificate options available:</p>
+
+<h3>Self-signed Certificate</h3>
+
+<p>They’re free to create and work to sign PDF documents. They’re great for testing, but they are the least secure option. If they are ever compromised, they can’t be revoked – which could potentially invalidate all contracts signed with the certificate.</p>
+
+<h3>Client Certificate</h3>
+
+<p>For about $10 per year, a certificate authority (CA) such as DigiCert, GlobalSign, etc. can issue a certificate used for signing PDF documents. The upsides of this solution are that they’re cheap, the certificate is issued by a trusted CA, and it can be revoked if it ever gets compromised. The downsides of this option are that client certificates aren’t included in Adobe’s Approved Trust List (AATL) so the PDF document would display a default warning in Adobe, and (since client certificates have fewer security requirements compared to AATL certificates) they are less secure.</p>
+
+<h3>AATL Certificate</h3>
+
+<p>This is the most secure option, but because of the added security and certification requirements imposed by Adobe, it can cost thousands of dollars per year (pricing is typically based on the number of signatures needed). For our project, costs for this solution were estimated between $4,000 - $13,000 per year. It requires 2-factor authentication via a hardware key per device, a Hardware Security Device (HSM), or a cloud-based solution. Some AATL solutions offer a new certificate per signature which would facilitate a unique certificate per signer.</p>
+
+<p><strong>Note</strong>: If you need to sign a document directly in Adobe, MS Word, or other similar application, the AATL certificate is the only solution available. Finally, this is the only option that will show up as a valid &amp; trusted signature in Adobe by default.</p>
+
+<p><img alt="aalt certifcate" height="148" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/aatl_certificate.png" width="677"></p>
+
+<h2>So, I’ve heard of another topic called Long Term Validation (LTV). What is it?</h2>
+
+<p>Say you need to store the signed contract for years or decades but are concerned that the signature may become invalid if the certificate expires, is revoked, or (worse yet) the CA goes out of business. Any of these scenarios, which are external to the signed document, put the validity of the contract in jeopardy. This is where Long Term Validation comes in. LTV adds an extra section to the digital signature that includes a timestamp from a trusted Timestamp Authority and the status of the certificate at the time of signing. By adding an LTV section, everything needed to verify the certificate and signature which were valid at the time the contract was signed is self-contained within the PDF document and have no external dependencies that may change over time.</p>
+
+<h3>Let’s get into the details starting with the workflow….</h3>
+
+<p>In our specific case,</p>
+
+<ol>
+	<li>
+	<p>A client comes into the business and signs an agreement for a year of service.</p>
+	</li>
+	<li>
+	<p>We use a tablet device running a custom UWP application to first populate the agreement with the specific terms of the contract for the client (name, price, service plan, etc.). Then we display the filled-in PDF document on the screen for the client to review.</p>
+	</li>
+	<li>
+	<p>Once the client reviews the document, they are given the option to either print the agreement and hand-sign it manually or electronically sign the document on the tablet.</p>
+	</li>
+	<li>
+	<p>If they choose to electronically sign the document, a “Capture Signature” screen is displayed where the client can sign their name and choose whether they want a copy of the signed contract emailed to them and/or have a physical copy of the contract printed.</p>
+	</li>
+	<li>
+	<p>When they click the “Yes, I Agree” button, the PDF contract is digitally signed, a copy of the contract is saved in the database with additional details related to the document, and then the contract is emailed and/or printed based on what the client selected when signing the contract.</p>
+	</li>
+</ol>
+
+<p><img alt="Long term validation signature" height="441" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/long_term_validation_signature.png" width="714"></p>
+
+<h3>Can I see some code?</h3>
+
+<p>You bet!</p>
+
+<ul>
+	<li>
+	<p>On the UI, I used an InkCanvas control to capture the client’s signature:&nbsp;<code>&lt;InkCanvas x:Name="signatureInkCanvas" Height="125" Width="750" /&gt;</code></p>
+	</li>
+	<li>
+	<p>In the code, the InkCanvas gets initialized in the constructor:<img alt="inkcanvas code" height="410" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/inkcanvas_code.png" width="909"></p>
+	</li>
+	<li>
+	<p>Add a check to make sure the client has made at least some sort of signature before clicking the “Yes, I Agree” button:<img alt="inkpresenter code" height="130" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/inkpresenter_code.png" width="896"></p>
+	</li>
+	<li>
+	<p>And finally capture the image:<img alt="client signature button code" height="298" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/client_signature_button_code.png" width="902"><img alt="ink canvas bitmap" height="430" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/ink_canvas_bitmap.png" width="898"><img alt="ink canvas byte array code" height="532" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/ink_canvas_byte_array_code.png" width="720"></p>
+	</li>
+	<li>
+	<p>In the SaveClientSignature method, that’s where the digital signature magic happens. First, we fill in the PDF document with the name, price, service plan, etc., and then flatten and save the PDF to a file [not shown]. After we have the flattened PDF, we apply the signature using the SignDocumentDigitalSignature method below:</p>
+
+	<pre><button title="Copy to clipboard" class="copyBtn" data-clipboard-action="copy" data-clipboard-target=".codeCopy0"><img title="Copy to clipboard" class="clippy" width="13" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/clippy.svg" alt="Copy to clipboard"></button><code class="codeCopy0 hljs cs" style="overflow-x: auto;"><span class="hljs-keyword">private</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">SignDocumentSignature</span>(<span class="hljs-keyword">string</span> filePath, AgreementElectronicSignatureParametersDTO agreementParameters, ElectronicSignatureInfoDTO signatureInfo)
+{
+    <span class="hljs-keyword">if</span> (agreementParameters != <span class="hljs-keyword">null</span> &amp;&amp; signatureInfo != <span class="hljs-keyword">null</span>)
+    {
+        <span class="hljs-comment">//Maintain the same ratio as the height/width of the client's signature image</span>
+        <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> signatureHeight = <span class="hljs-number">25</span>;
+        <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> signatureWidth = <span class="hljs-number">150</span>;
+ 
+        <span class="hljs-keyword">string</span> clientSignaturePath = <span class="hljs-keyword">string</span>.Concat(filePath.Replace(<span class="hljs-string">".pdf"</span>, <span class="hljs-string">"_ClientSignature.jpg"</span>));
+        <span class="hljs-keyword">string</span> filePathSigned = <span class="hljs-keyword">string</span>.Concat(filePath.Replace(<span class="hljs-string">".pdf"</span>, <span class="hljs-string">"_Signed.pdf"</span>));
+ 
+        <span class="hljs-keyword">try</span>
+        {
+            PdfReader pdfReader = <span class="hljs-keyword">new</span> PdfReader(filePath);
+ 
+            PdfSigner pdfSigner = <span class="hljs-keyword">new</span> PdfSigner(pdfReader, <span class="hljs-keyword">new</span> FileStream(filePathSigned, FileMode.Create), <span class="hljs-keyword">false</span>);
+ 
+            IExternalSignature pks = GetPrivateKeySignature();         
+            Org.BouncyCastle.X509.X509Certificate[] chain = GetCertificateChain();
+ 
+            OCSPVerifier ocspVerifier = <span class="hljs-keyword">new</span> OCSPVerifier(<span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);
+            OcspClientBouncyCastle ocspClient = <span class="hljs-keyword">new</span> OcspClientBouncyCastle(ocspVerifier);
+            CrlClientOnline crlClient = <span class="hljs-keyword">new</span> CrlClientOnline();
+ 
+            TSAClientBouncyCastle tsa = <span class="hljs-keyword">new</span> TSAClientBouncyCastle(GetTimeStampAuthorityURL());
+ 
+            <span class="hljs-comment">//Show image of the client's signature on the pdf</span>
+            SaveBase64AsImage(clientSignaturePath, agreementParameters.ClientSignature);
+            ImageData clientSignatureImage = ImageDataFactory.Create(clientSignaturePath);
+ 
+            pdfSigner.SetCertificationLevel(PdfSigner.CERTIFIED_NO_CHANGES_ALLOWED);
+            pdfSigner.SetFieldName(<span class="hljs-string">"signature"</span>);
+ 
+            PdfSignatureAppearance signatureAppearance = pdfSigner.GetSignatureAppearance();
+            signatureAppearance.SetRenderingMode(PdfSignatureAppearance.RenderingMode.GRAPHIC);
+            signatureAppearance.SetReason(<span class="hljs-string">""</span>);
+            signatureAppearance.SetLocationCaption(<span class="hljs-string">""</span>);
+            signatureAppearance.SetSignatureGraphic(clientSignatureImage);
+            signatureAppearance.SetPageNumber(signatureInfo.PageNumber);
+            signatureAppearance.SetPageRect(<span class="hljs-keyword">new</span> Rectangle(signatureInfo.Left, signatureInfo.Bottom,
+                signatureWidth, signatureHeight));
+ 
+            pdfSigner.SignDetached(pks, chain, (<span class="hljs-keyword">new</span> List&lt;ICrlClient&gt;() {crlClient}), ocspClient, tsa, <span class="hljs-number">0</span>,
+                PdfSigner.CryptoStandard.CMS);
+ 
+            <span class="hljs-comment">// Replace the original agreement with the signed version</span>
+            File.Delete(filePath);
+            File.Copy(filePathSigned, filePath);
+            File.Delete(filePathSigned);
+        }
+        <span class="hljs-keyword">catch</span>
+        {
+            <span class="hljs-keyword">throw</span>;
+        }
+        <span class="hljs-keyword">finally</span>
+        {
+            <span class="hljs-comment">//Remove signature images if it exists</span>
+            <span class="hljs-keyword">if</span> (!String.IsNullOrEmpty(clientSignaturePath) &amp;&amp; File.Exists(clientSignaturePath))
+                File.Delete(clientSignaturePath);
+        }
+    }
+}</code></pre>
+
+	<p><img alt="key vault client code" height="529" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/key_vault_client_code.png" width="931"><img alt="signature code" height="115" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/signature_code.png" width="724"></p>
+
+	<p>And there you have it: an electronically and digitally signed document.</p>
+	</li>
+</ul>
+
+<h2>Where to Learn More</h2>
+
+<p>What makes an electronic signature legally binding:</p>
+
+<ul>
+	<li>
+	<p><a href="https://acrobat.adobe.com/content/dam/doc-cloud/en/pdfs/dc_esignatures_us_overview_ue.pdf" target="_blank" rel="noopener nofollow">https://acrobat.adobe.com/content/dam/doc-cloud/en/pdfs/dc_esignatures_us_overview_ue.pdf</a></p>
+	</li>
+	<li>
+	<p><a href="https://www.docusign.com/learn/esign-act-ueta" target="_blank" rel="noopener nofollow">https://www.docusign.com/learn/esign-act-ueta</a></p>
+	</li>
+	<li>
+	<p><a href="https://www.pcworld.com/article/253523/how_to_make_sure_that_digital_signature_is_legit.html" target="_blank" rel="noopener nofollow">https://www.pcworld.com/article/253523/how_to_make_sure_that_digital_signature_is_legit.html</a></p>
+	</li>
+	<li>
+	<p><a href="https://blogs.findlaw.com/law_and_life/2013/06/what-are-e-signatures-are-they-legally-valid.html" target="_blank" rel="noopener nofollow">https://blogs.findlaw.com/law_and_life/2013/06/what-are-e-signatures-are-they-legally-valid.html</a></p>
+	</li>
+</ul>
+
+<p>Differences between electronic and digital signatures:</p>
+
+<ul>
+	<li>
+	<p><a href="https://www.globalsign.com/en/blog/electronic-signatures-vs-digital-signatures/" target="_blank" rel="noopener nofollow">https://www.globalsign.com/en/blog/electronic-signatures-vs-digital-signatures/</a></p>
+	</li>
+	<li>
+	<p><a href="https://www.assuresign.com/electronic-signatures-vs-digital-signatures/" target="_blank" rel="noopener nofollow">https://www.assuresign.com/electronic-signatures-vs-digital-signatures/</a></p>
+	</li>
+</ul>
+
+<p>Whitepaper from iText on digitally signing documents:</p>
+
+<ul>
+	<li>
+	<p><a href="https://itextpdf.com/en/resources/books/digital-signatures-pdf/intro">https://itextpdf.com/en/resources/books/digital-signatures-pdf/intro</a></p>
+	</li>
+</ul>
+
+            </div>
+
+
+
+    
+
+              <hr>
+
+      
+
+
+  <div class="field field--name-field-tags field--type-entity-reference field__items">
+    
+                  <a href="https://itextpdf.com/tags/digital-signatures" property="schema:about" hreflang="en">Digital signatures</a>
+              <a href="https://itextpdf.com/tags/uwp" property="schema:about" hreflang="en">UWP</a>
+              <a href="https://itextpdf.com/tags/itext-7" property="schema:about" hreflang="en">iText 7</a>
+              <a href="https://itextpdf.com/tags/contributors" property="schema:about" hreflang="en">Contributors</a>
+            </div>
+
+
+      
+
+      <hr>
+      </div>
+
+                        </div>
+  </article>
+
+
+  </div>
+
+
+      </div>
+
+
+      
+
+
+
+  <div class="region region--sidebar">
+
+    <h3 class="sidebar-toggle">
+      <button id="collapsible-filters" class="collapsible-button" aria-expanded="false" aria-controls="collapsible-filters">
+        Expand sidebar
+      </button>
+    </h3>
+
+    <div id="collapsible-filters" class="collapsible-region" aria-hidden="true">
+              
+
+
+<div id="block-addtoanybuttons" class="block block--addtoany block--addtoany-block block--addtoanybuttons">
+  
+
+            <h2>Share this article</h2>
+      
+  
+
+      <span class="a2a_kit a2a_kit_size_25 addtoany_list" data-a2a-url="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog" data-a2a-title="Digital Signatures in a Universal Application (UWP) with iText - reblog" style="line-height: 25px;"><a class="a2a_button_facebook" target="_blank" href="https://itextpdf.com/#facebook" rel="nofollow noopener"><i class="fa-brands fa-facebook-f  fa-2x"></i></a><a class="a2a_button_twitter" target="_blank" href="https://itextpdf.com/#twitter" rel="nofollow noopener"><i class="fa-brands fa-twitter fa-2x"></i></a><a class="a2a_button_linkedin" target="_blank" href="https://itextpdf.com/#linkedin" rel="nofollow noopener"><i class="fa-brands fa-linkedin-in fa-2x"></i></a><a class="a2a_button_whatsapp" target="_blank" href="https://itextpdf.com/#whatsapp" rel="nofollow noopener"><i class="fa-brands fa-whatsapp fa-2x"></i></a><a class="a2a_button_email" target="_blank" href="https://itextpdf.com/#email" rel="nofollow noopener"><i class="fa-solid fa-envelope fa-2x"></i></a></span>
+  </div>
+
+
+  
+
+<div class="views-exposed-form bef-exposed-form block block--views block--views-exposed-filter-blockblog-blog-list block--exposedformblogblog-list-2 block--exposed-filter" data-bef-auto-submit-full-form="" data-bef-auto-submit="" data-bef-auto-submit-delay="500" data-drupal-selector="views-exposed-form-blog-blog-list" id="block-exposedformblogblog-list-2">
+
+  
+
+        
+  
+
+      
+
+
+
+
+
+<form action="https://itextpdf.com/blog" method="get" id="views-exposed-form-blog-blog-list" accept-charset="UTF-8" class="form form--views-exposed-form form-- form--views-exposed-form-blog-blog-list">
+      <div class="form--inline clearfix">
+  
+
+
+<div class="js-form-item form-item js-form-type-textfield form-item--textfield js-form-item-title form-item--title">
+      
+
+
+
+
+
+
+  
+  
+      
+    
+  <input placeholder="Search by keywords" data-drupal-selector="edit-title" type="text" id="edit-title" name="title" value="" size="30" maxlength="128" class="form-text">
+
+
+        
+  
+  
+  </div>
+
+
+
+
+
+<fieldset data-drupal-selector="edit-category" id="edit-category--wrapper" class="fieldgroup form-composite js-form-wrapper form-wrapper fieldset fieldset--checkboxes">
+  
+        <h3 class="legend">
+      <span class="fieldset-legend">Category</span>
+    </h3>
+  
+  <div class="fieldset-wrapper">
+    <div class="form-item__wrapper">
+      
+      
+      <div id="edit-category" class="form-checkboxes"><div class="form-checkboxes bef-checkboxes">
+                  
+
+
+<div class="js-form-item form-item js-form-type-checkbox form-item--checkbox js-form-item-category-98 form-item--category-98">
+  
+  
+      
+      
+
+  <input data-drupal-selector="edit-category-98" type="checkbox" id="edit-category-98" name="category[98]" value="98" class="form-checkbox">
+
+
+        
+      
+
+
+
+
+
+<div class="form-item__label form-item__label--default">
+    <label for="edit-category-98" class="option">
+              <span class="label-helper"></span>
+      
+      <span class="label-text">iText news</span>
+
+          </label>
+  </div>
+  
+  
+  </div>
+
+                    
+
+
+<div class="js-form-item form-item js-form-type-checkbox form-item--checkbox js-form-item-category-99 form-item--category-99">
+  
+  
+      
+      
+
+  <input data-drupal-selector="edit-category-99" type="checkbox" id="edit-category-99" name="category[99]" value="99" class="form-checkbox">
+
+
+        
+      
+
+
+
+
+
+<div class="form-item__label form-item__label--default">
+    <label for="edit-category-99" class="option">
+              <span class="label-helper"></span>
+      
+      <span class="label-text">Technical notes</span>
+
+          </label>
+  </div>
+  
+  
+  </div>
+
+      </div>
+</div>
+
+
+      
+      
+      
+    </div>
+  </div>
+</fieldset>
+
+  <input data-drupal-selector="edit-utm-source" type="hidden" name="utm_source" value="google">
+
+  <input data-drupal-selector="edit-utm-medium" type="hidden" name="utm_medium" value="organic">
+
+  <input data-drupal-selector="edit-utm-campaign" type="hidden" name="utm_campaign" value="(organic)">
+
+  <input data-drupal-selector="edit-utm-term" type="hidden" name="utm_term" value="(not%20provided)">
+
+  <input data-drupal-selector="edit-utm-content" type="hidden" name="utm_content" value="">
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions">
+      <input data-bef-auto-submit-click="" class="js-hide button js-form-submit form-submit" data-drupal-selector="edit-submit-blog" type="submit" id="edit-submit-blog" value="Apply">
+  </div>
+
+</div>
+
+  </form>
+
+
+      </div>
+
+
+
+  
+
+<div id="block-populartags" class="block block--itext-core block--itext-popular-content block--populartags">
+  
+
+        <h3>Popular tags</h3>
+  
+  
+
+      <div class="views-element-container">
+
+
+
+<div class="views-view views-view--popular-tags views-view--popular-tags--embed-popular-tags js-view-dom-id-de8c2fb91cab2d80e00293b9f7007cbb6a217237756599da4658f68ad944eb18">
+  
+
+        
+  
+
+        
+  
+  
+            <div class="view-content">
+        
+      
+          <div class="views-row">
+        <div class="views-field views-field-name"><span class="field-content"><a href="https://itextpdf.com/tags/itext-7" hreflang="en">iText 7</a></span></div>
+      </div>
+          
+          <div class="views-row">
+        <div class="views-field views-field-name"><span class="field-content"><a href="https://itextpdf.com/tags/itext" hreflang="en">iText</a></span></div>
+      </div>
+          
+          <div class="views-row">
+        <div class="views-field views-field-name"><span class="field-content"><a href="https://itextpdf.com/tags/digital-signatures" hreflang="en">Digital signatures</a></span></div>
+      </div>
+          
+          <div class="views-row">
+        <div class="views-field views-field-name"><span class="field-content"><a href="https://itextpdf.com/tags/testimonial" hreflang="en">Testimonial</a></span></div>
+      </div>
+          
+          <div class="views-row">
+        <div class="views-field views-field-name"><span class="field-content"><a href="https://itextpdf.com/tags/national-digital-identity-programs" hreflang="en">national digital identity programs</a></span></div>
+      </div>
+          
+          <div class="views-row">
+        <div class="views-field views-field-name"><span class="field-content"><a href="https://itextpdf.com/tags/itext-5" hreflang="en">iText 5</a></span></div>
+      </div>
+          
+          <div class="views-row">
+        <div class="views-field views-field-name"><span class="field-content"><a href="https://itextpdf.com/tags/authentication" hreflang="en">Authentication</a></span></div>
+      </div>
+          
+          <div class="views-row">
+        <div class="views-field views-field-name"><span class="field-content"><a href="https://itextpdf.com/tags/deloitte" hreflang="en">Deloitte</a></span></div>
+      </div>
+      
+
+      </div>
+      
+  
+  
+        
+        
+  </div>
+
+</div>
+
+  </div>
+
+
+          </div>
+  </div>
+
+    </div>
+  
+          
+
+
+  <div class="region region--content-bottom">
+          
+
+
+<div class="views-element-container block block--views block--views-blockblog-author-blog-author block--views-block__blog-author-blog-author" id="block-views-block-blog-author-blog-author">
+  
+
+        
+  
+
+      <div>
+
+
+
+<div class="views-view views-view--blog-author views-view--blog-author--blog-author js-view-dom-id-6f714de7dc3c23469c8a0239326f3fe5a85023780b4abd5baa50c3e21e025779">
+  
+
+        
+  
+
+        
+  
+  
+            <div class="view-content">
+        
+      
+          
+      
+
+      </div>
+      
+  
+  
+        
+        
+  </div>
+
+</div>
+
+  </div>
+
+
+
+  
+  
+<section class="brick brick--white">
+  <div class="brick__inner">
+    
+<div id="block-relatedcontent" class="block block--itext-core block--itext-related-content block--relatedcontent">
+  
+
+            <h2>Related content</h2>
+      
+  
+
+      <div class="views-element-container">
+
+
+  
+
+<div class="views-view views-view--related-content views-view--related-content--block-related-content-by-tags js-view-dom-id-39424b5550c7679dc5f6b0966b10aadee3e2e626ae9b953277c9a514ba8f1684">
+  
+
+        
+  
+
+        
+  
+  
+            <div class="view-content">
+        
+      
+          
+
+  
+  
+
+  <article role="article" about="/blog/itext-news-technical-notes/attacks-pdf-certification-and-what-you-can-do-about-them" typeof="schema:Article" class="node node--type-article article article--promoted article--sticky node--teaser article--teaser">
+    
+
+      
+
+
+  <div class="field field--name-field-main-image field--type-entity-reference field__items">
+    
+                  
+
+<article class="media media--image media--image--wide-teaser-focal-point">
+  
+            
+
+
+  <div class="field field--name-field-media-image field--type-image field__items">
+          <div class="field__label visually-hidden">Image</div>
+    
+                    <img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/Teaser - 762x296_6(1).png" width="762" height="296" alt="PDF under attack" loading="lazy" typeof="foaf:Image" class="image-style-wide-teaser-focal-point">
+
+
+
+            </div>
+
+
+      </article>
+
+
+            </div>
+
+
+
+      <span property="schema:name" content="Attacks on PDF certification, and what you can do about them" class="rdf-meta hidden"></span>
+  <span property="schema:interactionCount" content="UserComments:0" class="rdf-meta hidden"></span>
+
+
+    <div class="article__inner node__inner">
+        <h2>
+    <a href="https://itextpdf.com/blog/itext-news-technical-notes/attacks-pdf-certification-and-what-you-can-do-about-them" rel="bookmark"><span property="schema:name" class="field field--name-title field--type-string field--label-hidden">Attacks on PDF certification, and what you can do about them</span>
+</a>
+  </h2>
+
+  <div class="node__author">
+    Wed - 06/23/2021
+  </div>
+
+  
+
+
+  <div class="field field--name-field-teaser-text field--type-string-long field__items">
+    
+                  In May 2021, a group of researchers at the Ruhr University Bochum (RUB) published an IEEE symposium paper on problems with certification signatures in PDF. The authors’ findings are summarized on the PDF Insecurity website. Since iText’s products are often used as part of digital signing workflows (including to create certification signatures), we felt compelled to comment. In this blog post, we’ll take you through some background on these new attacks, and explain what you can do about them.
+            </div>
+
+
+
+  <a class="link-with-angle text-orange" href="https://itextpdf.com/blog/itext-news-technical-notes/attacks-pdf-certification-and-what-you-can-do-about-them" rel="bookmark">
+    <span>Read full article</span>
+    <svg aria-hidden="true" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path>
+    </svg>
+  </a>
+
+                        </div>
+  </article>
+
+
+          
+          
+
+  
+  
+
+  <article role="article" about="/blog/itext-news/israels-green-pass-pdf-vaccination-certificate-contains-security-flaws" typeof="schema:Article" class="node node--type-article article node--teaser article--teaser">
+    
+
+      
+
+
+  <div class="field field--name-field-main-image field--type-entity-reference field__items">
+    
+                  
+
+<article class="media media--image media--image--wide-teaser-focal-point">
+  
+            
+
+
+  <div class="field field--name-field-media-image field--type-image field__items">
+          <div class="field__label visually-hidden">Image</div>
+    
+                    <img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/DSfin_762x296-01_1.jpg" width="762" height="296" alt="green pass pdf vaccination certificate" loading="lazy" typeof="foaf:Image" class="image-style-wide-teaser-focal-point">
+
+
+
+            </div>
+
+
+      </article>
+
+
+            </div>
+
+
+
+      <span property="schema:name" content="Israel’s Green Pass PDF Vaccination Certificate contains security flaws" class="rdf-meta hidden"></span>
+  <span property="schema:interactionCount" content="UserComments:0" class="rdf-meta hidden"></span>
+
+
+    <div class="article__inner node__inner">
+        <h2>
+    <a href="https://itextpdf.com/blog/itext-news/israels-green-pass-pdf-vaccination-certificate-contains-security-flaws" rel="bookmark"><span property="schema:name" class="field field--name-title field--type-string field--label-hidden">Israel’s Green Pass PDF Vaccination Certificate contains security flaws</span>
+</a>
+  </h2>
+
+  <div class="node__author">
+    Thu - 03/04/2021
+  </div>
+
+  
+
+
+  <div class="field field--name-field-teaser-text field--type-string-long field__items">
+    
+                  The recent example of Israel's Green Pass is a reminder how important digital signatures are for secure PDF documents. Will the EU learn lessons from it when considering similar approaches for COVID-19 vaccine passports? 
+            </div>
+
+
+
+  <a class="link-with-angle text-orange" href="https://itextpdf.com/blog/itext-news/israels-green-pass-pdf-vaccination-certificate-contains-security-flaws" rel="bookmark">
+    <span>Read full article</span>
+    <svg aria-hidden="true" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path>
+    </svg>
+  </a>
+
+                        </div>
+  </article>
+
+
+          
+          
+
+  
+  
+
+  <article role="article" about="/blog/technical-notes/using-itext-7-and-aws-kms-digitally-sign-pdf-document" typeof="schema:Article" class="node node--type-article article article--promoted article--sticky node--teaser article--teaser">
+    
+
+      
+
+
+  <div class="field field--name-field-main-image field--type-entity-reference field__items">
+    
+                  
+
+<article class="media media--image media--image--wide-teaser-focal-point">
+  
+            
+
+
+  <div class="field field--name-field-media-image field--type-image field__items">
+          <div class="field__label visually-hidden">Image</div>
+    
+                    <img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/AWS-Teaser-2-762x296.png" width="762" height="296" alt="AWS KMS teaser" loading="lazy" typeof="foaf:Image" class="image-style-wide-teaser-focal-point">
+
+
+
+            </div>
+
+
+      </article>
+
+
+            </div>
+
+
+
+      <span property="schema:name" content="Digitally sign a PDF using AWS KMS and iText 7" class="rdf-meta hidden"></span>
+  <span property="schema:interactionCount" content="UserComments:0" class="rdf-meta hidden"></span>
+
+
+    <div class="article__inner node__inner">
+        <h2>
+    <a href="https://itextpdf.com/blog/technical-notes/using-itext-7-and-aws-kms-digitally-sign-pdf-document" rel="bookmark"><span property="schema:name" class="field field--name-title field--type-string field--label-hidden">Digitally sign a PDF using AWS KMS and iText 7</span>
+</a>
+  </h2>
+
+  <div class="node__author">
+    Fri - 01/29/2021
+  </div>
+
+  
+
+
+  <div class="field field--name-field-teaser-text field--type-string-long field__items">
+    
+                  Securing and automating digital document workflows is increasingly important in the modern business world. A crucial part of creating secure digital signatures is generating public and private keys for signing, and cloud providers such as Amazon, Google, and Microsoft now offer highly-secure cryptographic key management services. Since iText is used by many businesses and signing services to integrate secure digital signatures into PDFs, this step-by-step article shows developers how to use iText 7 and the AWS KMS APIs to generate a digital signature and add it to a PDF document.
+            </div>
+
+
+
+  <a class="link-with-angle text-orange" href="https://itextpdf.com/blog/technical-notes/using-itext-7-and-aws-kms-digitally-sign-pdf-document" rel="bookmark">
+    <span>Read full article</span>
+    <svg aria-hidden="true" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path>
+    </svg>
+  </a>
+
+                        </div>
+  </article>
+
+
+      
+
+      </div>
+      
+  
+  
+        
+        
+  </div>
+
+</div>
+
+  </div>
+
+  </div>
+</section>
+
+
+
+<div id="block-readytouseitext" class="block block--block-content block--block-contentc8e0d7c1-6ef5-4892-b611-e2c0cdbd1540 block--readytouseitext">
+  
+
+        
+  
+
+      
+
+
+  <div class="field field--name-field-cta field--type-entity-reference-revisions field__items">
+    
+                  
+  
+
+  
+<section class="brick brick--no-whitespace-stacking cta ">
+  <div class="brick__inner">
+    
+  <article class="paragraph paragraph--call-to-action paragraph--call-to-action--full-width">
+          <h2>Ready to use iText?</h2>
+
+      
+
+
+  <div class="wysiwyg-content clearfix text-formatted field field--name-field-paragraph-text field--type-text-long field__items">
+    
+                  <p>As always, if you have any technical questions, you can contact support with your valid <a href="https://itextpdf.com/en/how-buy/paid-support-agreement" target="_blank">support </a>subscription or head over to one of our <a href="https://itextpdf.com/en/how-buy/agpl-license" target="_blank">community support </a>pages on&nbsp;<a href="http://stackoverflow.com/search?q=itext7" target="_blank" rel="noopener nofollow">Stack Overflow</a>&nbsp;to see if your question has already been answered for our <a href="https://itextpdf.com/en/how-buy/agpl-license" target="_blank">open source AGPL </a>users.&nbsp;</p>
+
+            </div>
+
+
+
+                        <a href="https://itextpdf.com/get-started" class="button button--wide button--chevron">
+            <span>
+              Get started with iText
+              <svg aria-hidden="true" class="chevron-right" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg"><path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path></svg>
+            </span>
+          </a>
+                                <a href="https://itextpdf.com/resources/api-documentation" class="button button--wide button--chevron button--blue">
+            <span>
+              Refer to API Documentation
+              <svg aria-hidden="true" class="chevron-right" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg"><path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path></svg>
+            </span>
+          </a>
+                    </article>
+
+  </div>
+</section>
+
+            </div>
+
+
+  </div>
+
+
+
+  
+  
+
+<section class="brick bg-grey--light">
+  <div class="brick__inner">
+    
+<div id="block-newsletterfooter" class="block block--block-content block--block-content8838eb8d-526e-4ad3-bcc3-c72edf6fe181 block--newsletterfooter">
+  
+
+        
+  
+
+        <div class="group-left">
+        
+
+
+  <div class="field field--name-field-block-heading field--type-string field__items">
+    
+                  Contact
+            </div>
+
+
+
+
+  <div class="wysiwyg-content clearfix text-formatted field field--name-body field--type-text-with-summary field__items">
+    
+                  <h2>Still have questions?&nbsp;</h2>
+
+<p>We're happy to answer your questions. Reach out to us and we'll get back to you shortly.</p>
+
+            </div>
+
+
+
+                  <a href="https://itextpdf.com/contact" class="button button--wide button--chevron">
+        <span>
+          Contact us
+          <svg aria-hidden="true" class="chevron-right" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg"><path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path></svg>
+        </span>
+          </a>
+              </div>
+
+      <div class="group-right">
+        <div class="bg-dotted bg-dotted--blue-light"></div>
+        <div class="contact-block">
+          <div class="contact-block--title">Stay updated</div>
+          <p>Join 11,000+ subscribers and become an iText PDF expert by staying up to date with our new products, updates, tips, technical solutions and happenings.</p>
+          <a href="https://itextpdf.com/mailing-list/subscribe" class="button button--wide button--chevron">
+        <span>
+          Subscribe Now          <svg aria-hidden="true" class="chevron-right" viewBox="0 0 9 12" xmlns="http://www.w3.org/2000/svg"><path d="M.84 10.59L5.42 6 .84 1.41 2.25 0l6 6-6 6z"></path></svg>
+        </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+      </div>
+
+
+    
+      </main>
+
+  <footer id="footer" class="footer" role="contentinfo">
+    
+
+  
+
+  <div class="region region--footer-top">
+      <div class="region__inner u-container">
+    
+
+  
+
+<div id="block-itextsocialmedialinks" class="block block--itext-core block--itext-social-media-links block--itextsocialmedialinks">
+  
+
+        
+  
+
+  
+  <a class="logo-link" href="https://itextpdf.com/">
+    <span class="accessibly-hidden">iText pdf logo</span>
+    <svg aria-labelledby="itext-logo-title-bottom" id="itext-logo-bottom" role="img" data-name="itext-logo-bottom" class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 34.5">
+      <path d="M6.1 33.3c-.7.7-1.5 1-2.5 1s-1.8-.4-2.5-1c-.7-.7-1-1.5-1-2.5v-27c0-1 .4-1.8 1-2.5.7-.7 1.5-1 2.5-1s1.8.4 2.5 1c.7.7 1 1.5 1 2.5v27.1c.1.9-.3 1.7-1 2.4z"></path>
+      <path d="M66.8 1.2c.7.7 1 1.5 1 2.5s-.4 1.9-1 2.5c-.7.7-1.5 1-2.5 1H43.7v23.5c0 1-.4 1.9-1 2.5-.7.7-1.5 1-2.5 1s-1.9-.4-2.5-1c-.7-.7-1-1.5-1-2.5V7.3H16.5c-.9-.1-1.7-.5-2.3-1.2-.7-.7-.9-1.5-.9-2.5s.4-1.8 1-2.5c.7-.7 1.5-1 2.5-1h47.5c1 0 1.8.3 2.5 1.1zm121.1 26.4L170 17.3 187.9 7c.9-.5 1.5-1.3 1.7-2.2.3-1 .1-2-.4-2.8-.5-.9-1.3-1.5-2.3-1.7-1-.3-2-.1-2.9.4l-21.7 12.5L140.6.6c-.9-.5-1.9-.7-2.9-.4s-1.8.8-2.3 1.7c-.5.9-.7 1.8-.4 2.8.3 1 .9 1.7 1.7 2.2l17.9 10.3-17.9 10.3c-.9.5-1.5 1.3-1.7 2.2-.3 1-.1 2 .4 2.8.5.9 1.3 1.5 2.3 1.7s2 .1 2.9-.4l21.7-12.5L184 33.8c.9.5 1.9.7 2.9.4 1-.2 1.8-.8 2.3-1.7.5-.9.7-1.8.4-2.8-.3-.8-.9-1.6-1.7-2.1z"></path>
+      <path d="M125.1 7.3H77.5c-2 0-3.6-1.6-3.6-3.6S75.5.1 77.5.1h47.6c2 0 3.6 1.6 3.6 3.6.1 2-1.5 3.6-3.6 3.6zm0 27.1H77.5c-2 0-3.6-1.6-3.6-3.6s1.6-3.6 3.6-3.6h47.6c2 0 3.6 1.6 3.6 3.6.1 2-1.5 3.6-3.6 3.6zm0-13.6H77.5c-2 0-3.6-1.6-3.6-3.6s1.6-3.6 3.6-3.6h47.6c2 0 3.6 1.6 3.6 3.6.1 2-1.5 3.6-3.6 3.6z"></path>
+      <path d="M249 1.2c.7.7 1 1.5 1 2.5s-.4 1.9-1 2.5c-.7.7-1.5 1-2.5 1H226v23.5c0 1-.4 1.9-1 2.5-.7.7-1.5 1-2.5 1s-1.9-.4-2.5-1c-.7-.7-1-1.5-1-2.5V7.3h-20c-.9-.1-1.7-.5-2.3-1.2-.7-.7-.9-1.5-.9-2.5s.4-1.8 1-2.5c.7-.7 1.5-1 2.5-1h47.5c.6 0 1.5.3 2.2 1.1z"></path>
+      <title id="itext-logo-title-bottom">Home</title>
+    </svg>
+  </a>
+
+  <div class="item-list">
+    <ul class="nav nav--inline">
+      <li>
+        <a href="https://www.facebook.com/iTextPDF" class="link facebook" target="_blank" rel="noopener noreferrer nofollow">
+          <span class="accessibly-hidden">facebook</span>
+          <svg aria-labelledby="itext-on-facebook" viewBox="0 0 512 512">
+            <path d="M211.9 197.4h-36.7v59.9h36.7v175.8h70.5V256.5h49.2l5.2-59.1h-54.4v-33.7c0-13.9 2.8-19.5 16.3-19.5h38.2V82.9h-48.8c-52.5 0-76.1 23.1-76.1 67.3-.1 38.6-.1 47.2-.1 47.2z"></path>
+            <title id="itext-on-facebook">iText pdf on facebook</title>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/itext" class="link twitter" target="_blank" rel="noopener noreferrer nofollow">
+          <span class="accessibly-hidden">twitter</span>
+          <svg aria-labelledby="itext-on-twitter" viewBox="0 0 512 512">
+            <path d="M419.6 168.6c-11.7 5.2-24.2 8.7-37.4 10.2 13.4-8.1 23.8-20.8 28.6-36-12.6 7.5-26.5 12.9-41.3 15.8C357.6 146 340.7 138 322 138c-42 0-72.9 39.2-63.4 79.9-54.1-2.7-102.1-28.6-134.2-68-17 29.2-8.8 67.5 20.1 86.9-10.7-.3-20.7-3.3-29.5-8.1-.7 30.2 20.9 58.4 52.2 64.6-9.2 2.5-19.2 3.1-29.4 1.1 8.3 25.9 32.3 44.7 60.8 45.2-27.4 21.4-61.8 31-96.4 27 28.8 18.5 63 29.2 99.8 29.2 120.8 0 189.1-102.1 185-193.6 12.9-9.1 23.9-20.5 32.6-33.6z"></path>
+            <title id="itext-on-twitter">iText pdf on twitter</title></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/channel/UC6kL1_Vm712V3XDM1_RSY8w" class="link youtube" target="_blank" rel="noopener noreferrer nofollow">
+          <span class="accessibly-hidden">youtube</span>
+          <svg aria-labelledby="itext-on-youtube" viewBox="0 0 512 512">
+            <path d="M422.6 193.6c-5.3-45.3-23.3-51.6-59-54-50.8-3.5-164.3-3.5-215.1 0-35.7 2.4-53.7 8.7-59 54-4 33.6-4 91.1 0 124.8 5.3 45.3 23.3 51.6 59 54 50.9 3.5 164.3 3.5 215.1 0 35.7-2.4 53.7-8.7 59-54 4-33.6 4-91.1 0-124.8zM222.2 303.4v-94.6l90.7 47.3-90.7 47.3z"></path>
+            <title id="itext-on-youtube">iText pdf on youtube</title></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/company/itext-software-corp/" class="link linkedin" target="_blank" rel="noopener noreferrer nofollow"><span class="accessibly-hidden">linkedin</span>
+          <svg aria-labelledby="itext-on-linkedin" viewBox="0 0 512 512">
+            <path d="M186.4 142.4c0 19-15.3 34.5-34.2 34.5-18.9 0-34.2-15.4-34.2-34.5 0-19 15.3-34.5 34.2-34.5 18.9 0 34.2 15.5 34.2 34.5zm-5 58.9h-57.8v186.8h57.8V201.3zm92.4 0h-55.4v186.8h55.4v-98c0-26.3 12.1-41.9 35.2-41.9 21.3 0 31.5 15 31.5 41.9v98H398V269.8c0-50-28.3-74.2-68-74.2-39.6 0-56.3 30.9-56.3 30.9v-25.2h.1z"></path>
+            <title id="itext-on-linkedin">iText pdf on linkedin</title></svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="item-list">
+    <ul class="nav nav--inline nav--inline--2">
+      <li>
+        <a href="https://stackoverflow.com/questions/tagged/itext" class="link stackoverflow" target="_blank" rel="noopener noreferrer nofollow"><span class="accessibly-hidden">stackoverflow</span>
+          <svg aria-labelledby="itext-on-stackoverflow" viewBox="0 0 96 96">
+            <path d="M75.5,54.9v20.6h-55V54.9h6.9v13.8h41.3V54.9H75.5z M30.8,58.3h34.4v6.9H30.8V58.3z M31.6,50.9l1.5-6.7
+            l33.6,7.4l-1.5,6.7L31.6,50.9z M35.5,37.1l2.9-6.2l31.2,14.5l-2.9,6.2L35.5,37.1z M73.8,39.9l-4.2,5.5L42.3,24.4l3-3.9h3.1
+            L73.8,39.9z"></path>
+            <title id="itext-on-stackoverflow">iText pdf on stackoverflow</title></svg>
+        </a>
+      </li>
+
+      <li>
+        <a href="https://github.com/itext/" title="iText pdf source code on Github" class="link github" target="_blank" rel="noopener noreferrer nofollow"><span class="accessibly-hidden">Github</span>
+          <img alt="iText pdf source code on Github" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/logo-octocat.png">
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <div class="item-list">
+    <ul class="nav nav--inline nav--inline--3">
+      <li>
+        <a href="https://kb.itextpdf.com/home/it7kb/installation-guidelines/installing-itext-7-for-java" title="Maven instructions to use iText 7 Core" class="link maven" target="_blank" rel="noopener noreferrer"><span class="accessibly-hidden">Github</span>
+          <img alt="Maven instructions to use iText 7 Core" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/maven_logo.png"></a>
+      </li>
+      <li>
+        <a href="https://www.nuget.org/profiles/iText" title="iText profile on Nuget" class="link nuget" target="_blank" rel="noopener noreferrer nofollow"><span class="accessibly-hidden">Github</span>
+          <img alt=" iText profile on Nuget" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/logo-nuget.png"> </a>
+      </li>
+
+    </ul>
+
+  </div>
+</div>
+
+<nav role="navigation" aria-labelledby="block-footerproductsmenu-menu" id="block-footerproductsmenu" class="block block-menu navigation menu--footer-products-menu">
+      
+  <h2 id="block-footerproductsmenu-menu">Products &amp; solutions</h2>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="https://itextpdf.com/products/itext-7" title="PDF SDK: iText 7 Suite" data-drupal-link-system-path="node/1746">PDF library: iText 7 Suite</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/products/itext-dito" title="Collaborative PDF generator" data-drupal-link-system-path="node/13276">Collaborative PDF generator: iText DITO</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/en/products/itext-pdf2data/extract-your-content-from-pdf" title="Template-based data extraction">Template-based data extraction: iText pdf2Data</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+<nav role="navigation" aria-labelledby="block-footertoolsmenu-menu" id="block-footertoolsmenu" class="block block-menu navigation menu--footer-tools-menu">
+      
+  <h2 id="block-footertoolsmenu-menu">Tools</h2>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="https://my.itextpdf.com/" target="_blank" title="iText License Portal">License Portal</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://kb.itextpdf.com/" target="_blank" title="iText Knowledge Base">Knowledge Base</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/resources/downloads" title="Download our products here" data-drupal-link-system-path="node/10411">Downloads</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/demos" title="iText 7 Demo Lab" data-drupal-link-system-path="node/13976">Demo Lab</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+<nav role="navigation" aria-labelledby="block-footerhowtobuymenu-menu" id="block-footerhowtobuymenu" class="block block-menu navigation menu--footer-how-to-buy-menu">
+      
+  <h2 id="block-footerhowtobuymenu-menu">Licensing</h2>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="https://itextpdf.com/how-buy/agpl-license" title="Look into the terms and conditions for your open source project" data-drupal-link-system-path="node/1751">Open source AGPL</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/how-buy" title="Commercial licenses" data-drupal-link-system-path="node/1756">Commercial licenses</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/get-your-itext-license" title="Request your personalized offer" data-drupal-link-system-path="node/15405">Get your license</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/en/how-buy/paid-support-agreement" title="Support agreement">Support agreement</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/en/how-buy/legal/software-license-agreement-sla" title="Software license agreements">Software license agreements</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+<nav role="navigation" aria-labelledby="block-footerresourcecentermenu-menu" id="block-footerresourcecentermenu" class="block block-menu navigation menu--footer-resource-center-menu">
+      
+  <h2 id="block-footerresourcecentermenu-menu">Resources</h2>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="https://itextpdf.com/resources/api-documentation" title="Take a tour through our API documentation" data-drupal-link-system-path="node/10111">API documentation</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/resources/downloads" title="Download our products here" data-drupal-link-system-path="node/10411">Downloads</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/resources" title="Explore our documentation at the resource center" data-drupal-link-system-path="node/13076">Resource Center</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/en/report-vulnerability" title="Report a Vulnerability">Report a Vulnerability</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+<nav role="navigation" aria-labelledby="block-footeraboutmenu-2-menu" id="block-footeraboutmenu-2" class="block block-menu navigation menu--footer-about-menu">
+      
+  <h2 id="block-footeraboutmenu-2-menu">About iText</h2>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="https://itextpdf.com/about-us" data-drupal-link-system-path="node/1686">About us</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/blog" title="Explore our latest news articles" data-drupal-link-system-path="blog">News</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/jobs" title="Become part of the iText family" data-drupal-link-system-path="node/15353">Careers</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/offices" title="Our offices" data-drupal-link-system-path="offices">Office locations</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/contact-us" title="Contact us" data-drupal-link-system-path="node/2">Contact us</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/en/partners" title="Resellers">Resellers</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/en/blog/itext-news/itext-software-receives-isoiec-270012017-certification">ISO/IEC 27001:2017 Certified</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </div>
+  </div>
+
+
+    
+
+
+  <div class="region region--footer-bottom">
+      <div class="region__inner u-container">
+    <nav role="navigation" aria-labelledby="block-footer-2-menu" id="block-footer-2" class="block block-menu navigation menu--footer">
+            
+  <h2 class="visually-hidden" id="block-footer-2-menu">Footer</h2>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="https://itextpdf.com/cookies-policy" title="Review our cookies policy">Cookies policy</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/privacy-policy" title="Review our privacy polucy">Privacy Policy</a>
+              </li>
+                <li class="menu-item">
+        <a href="https://itextpdf.com/how-buy/legal" title="Review our terms and conditions" data-drupal-link-system-path="node/5581">Terms &amp; conditions</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+
+    <span class="copyright">© 2022 iText Group nv (HQ Belgium), Inc. All rights reserved.</span>
+  </div>
+  </div>
+
+
+  </footer>
+</div>
+
+
+  </div>
+
+
+<script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/js_mDumLdCcwB-31smy_EmYSnZr2vww4m68a2cPeU0Y0h8.js.завантаження"></script>
+
+
+
+<script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/page.js.завантаження"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/page.js.завантаження"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/page.js.завантаження"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/page.js.завантаження"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/page.js.завантаження"></script><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/page.js.завантаження"></script><div style="position: static;"><div class="a2a_overlay" id="a2a_overlay"></div><div id="a2a_modal" class="a2a_modal a2a_hide" role="dialog" tabindex="-1" aria-label=""><div class="a2a_modal_body a2a_menu a2a_hide" id="a2a_copy_link"><span id="a2a_copy_link_icon" class="a2a_svg a2a_s_link a2a_logo_color"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#FFF" d="M24.4 21.18c0-.36-.1-.67-.36-.92l-2.8-2.8a1.24 1.24 0 0 0-.92-.38c-.38 0-.7.14-.97.43.02.04.1.12.25.26l.3.3.2.24c.08.12.14.24.17.35.03.1.05.23.05.37 0 .36-.13.66-.38.92a1.25 1.25 0 0 1-.92.37 1.4 1.4 0 0 1-.37-.03 1.06 1.06 0 0 1-.35-.18 2.27 2.27 0 0 1-.25-.2 6.82 6.82 0 0 1-.3-.3l-.24-.25c-.3.28-.44.6-.44.98 0 .36.13.66.38.92l2.78 2.8c.24.23.54.35.9.35.37 0 .68-.12.93-.35l1.98-1.97c.26-.25.38-.55.38-.9zm-9.46-9.5c0-.37-.13-.67-.38-.92l-2.78-2.8a1.24 1.24 0 0 0-.9-.37c-.36 0-.67.1-.93.35L7.97 9.92c-.26.25-.38.55-.38.9 0 .36.1.67.37.92l2.8 2.8c.24.25.55.37.92.37.36 0 .7-.13.96-.4-.03-.04-.1-.12-.26-.26s-.24-.23-.3-.3a2.67 2.67 0 0 1-.2-.24 1.05 1.05 0 0 1-.17-.35 1.4 1.4 0 0 1-.04-.37c0-.36.1-.66.36-.9.26-.26.56-.4.92-.4.14 0 .26.03.37.06.12.03.23.1.35.17.1.1.2.16.25.2l.3.3.24.26c.3-.28.44-.6.44-.98zM27 21.17c0 1.07-.38 2-1.15 2.73l-1.98 1.98c-.74.75-1.66 1.12-2.73 1.12-1.1 0-2-.38-2.75-1.14l-2.8-2.8c-.74-.74-1.1-1.65-1.1-2.73 0-1.1.38-2.04 1.17-2.82l-1.18-1.17c-.8.8-1.72 1.18-2.82 1.18-1.08 0-2-.36-2.75-1.12l-2.8-2.8C5.38 12.8 5 11.9 5 10.82c0-1.08.38-2 1.15-2.74L8.13 6.1C8.87 5.37 9.78 5 10.86 5c1.1 0 2 .38 2.75 1.15l2.8 2.8c.74.73 1.1 1.65 1.1 2.72 0 1.1-.38 2.05-1.17 2.82l1.18 1.18c.8-.8 1.72-1.2 2.82-1.2 1.08 0 2 .4 2.75 1.14l2.8 2.8c.76.76 1.13 1.68 1.13 2.76z"></path></svg></span><input id="a2a_copy_link_text" type="text" title="Copy link" readonly=""><div id="a2a_copy_link_copied">✓</div></div><div class="a2a_modal_body a2a_menu a2a_thanks a2a_hide" id="a2a_thanks"><div class="a2a_localize" data-a2a-localize="inner,ThanksForSharing">Дякую, що поділились</div></div></div><div class="a2a_menu a2a_full a2a_localize" id="a2apage_full" role="dialog" tabindex="-1" aria-label="Share" data-a2a-localize="title,Share" title="Поширити"><div class="a2a_full_header"><div id="a2apage_find_container" class="a2a_menu_find_container"><input id="a2apage_find" class="a2a_menu_find a2a_localize" type="text" autocomplete="off" title="Миттєво знайти інші сервіси щоб додати їх" data-a2a-localize="title,FindAnyServiceToAddTo"><span id="a2apage_find_icon" class="a2a_svg a2a_s_find"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#CCC" d="M19.7 18.2l-4.5-4.5c.7-1.1 1.2-2.3 1.2-3.6 0-3.5-2.8-6.3-6.3-6.3s-6.3 2.8-6.3 6.3 2.8 6.3 6.3 6.3c1.4 0 2.6-.4 3.6-1.2l4.5 4.5c.6.6 1.3.7 1.7.2.5-.4.4-1.1-.2-1.7zm-9.6-3.6c-2.5 0-4.5-2.1-4.5-4.5 0-2.5 2.1-4.5 4.5-4.5 2.5 0 4.5 2.1 4.5 4.5s-2 4.5-4.5 4.5z"></path></svg></span></div></div><div class="a2a_full_services" id="a2apage_full_services" role="presentation"></div><div class="a2a_full_footer"><a href="https://www.addtoany.com/" title="Share Buttons" rel="noopener" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_a2a a2a_logo_color"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g fill="#FFF"><path d="M14 7h4v18h-4z"></path><path d="M7 14h18v4H7z"></path></g></svg></span>AddToAny</a></div></div><div id="a2apage_dropdown" class="a2a_menu a2a_mini a2a_localize a2a_hide" tabindex="-1" aria-label="Поширити" data-a2a-localize="label,Share"><div class="a2a_mini_services" id="a2apage_mini_services"></div><div id="a2apage_cols_container" class="a2a_cols_container"><div class="a2a_col1" id="a2apage_col1"></div><div id="a2apage_2_col1" class="a2a_hide"></div><div class="a2a_clear"></div></div><div class="a2apage_wide a2a_wide"><a href="https://itextpdf.com/blog/technical-notes/digital-signatures-universal-application-uwp-itext-reblog#addtoany" id="a2apage_show_more_less" class="a2a_more a2a_localize" title="Бачити все" data-a2a-localize="title,ShowAll"><span class="a2a_svg a2a_s__default a2a_s_a2a a2a_logo_color"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g fill="#FFF"><path d="M14 7h4v18h-4z"></path><path d="M7 14h18v4H7z"></path></g></svg></span><span class="a2a_localize" data-a2a-localize="inner,More">Більше…</span></a></div></div><div style="height: 1px; width: 1px; position: absolute; z-index: 100000; top: 0px; visibility: hidden;"><iframe id="a2a_sm_ifr" title="AddToAny Utility Frame" transparency="true" allowtransparency="true" frameborder="0" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/sm.23.html" style="height: 1px; width: 1px; border: 0px; left: 0px; top: 0px; position: absolute; z-index: 100000; display: none;"></iframe></div></div><script src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/uk.js.завантаження"></script><script type="text/javascript" id="">(function(e){function f(a,b,c){if(a.addEventListener)a.addEventListener(b,c);else if(a.attachEvent)a.attachEvent("on"+b,function(d){c.call(a,d)});else if("undefined"===typeof a["on"+b]||null===a["on"+b])a["on"+b]=function(d){c.call(a,d)}}f(e,"message",function(a){try{var b=JSON.parse(a.data),c=e.dataLayer||(e.dataLayer=[]);b.event&&c.push({event:b.event,postMessageData:b})}catch(d){}})})(window);</script><div id="dmHlxz4RX1I0FqBFX1MUbLVlan9N56fidC5_QdU0h-zg"></div><script type="text/javascript" id="" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/ws-tracking.js.завантаження"></script><iframe name="_hjRemoteVarsFrame" title="_hjRemoteVarsFrame" id="_hjRemoteVarsFrame" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/box-0004cb77850b00d4aa7e1e08ff61e8f0.html" style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe><div class="d365-mkt-config" style="display:none" data-website-id="mHlxz4RX1I0FqBFX1MUbLVlan9N56fidC5_QdU0h-zg" data-hostname="0ed04da3418e4dcb81307148c701045f.svc.dynamics.com"></div><iframe id="_hjSafeContext_45398086" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/saved_resource.html" style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe><div id="drift-frame-chat" class="drift-conductor-item drift-frame-chat drift-frame-chat-align-right with-transition" aria-hidden="true" tabindex="-1" style="right: 12px; width: 400px !important; max-width: none; position: fixed; z-index: 2147483647; max-height: 0px; bottom: 88px; visibility: hidden; min-width: 320px; height: 100% !important; opacity: 0;"><iframe class="drift-frame-chat" scrolling="no" title="Drift Widget Chat Window" allow="autoplay; encrypted-media; fullscreen;" frameborder="0" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/chat.html" style="background: transparent; width: 400px !important; max-width: 100%; height: 100%; border: none;" aria-hidden="true" tabindex="-1"></iframe></div><div id="drift-frame-controller" class="drift-conductor-item drift-frame-controller drift-frame-controller-align-right" style="right: 24px; width: 76px !important; max-width: none; position: fixed; z-index: 2147483647; height: 0px !important; bottom: 24px;"><iframe class="drift-frame-controller" scrolling="no" title="Drift Widget Icon" allow="autoplay; encrypted-media; fullscreen;" frameborder="0" src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/core.html" style="background: transparent; width: 100%; max-width: 100%; height: 100%; border: none;"></iframe></div><img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/adsct" height="1" width="1" style="display: none;"><img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/adsct(1)" height="1" width="1" style="display: none;"><img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/adsct(2)" height="1" width="1" style="display: none;"><img src="./Digital Signatures in a Universal Application (UWP) with iText - reblog _ iText PDF_files/adsct(3)" height="1" width="1" style="display: none;"></body></html>
