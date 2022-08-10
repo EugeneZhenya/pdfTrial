@@ -1,0 +1,82 @@
+﻿@model pdfTrial.Models.IsoAgentAgreementForm
+@{
+    ViewBag.Title = "ISOAgentAgreement";
+}
+
+<style>
+    div {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+
+@using (Html.BeginForm("SubmitIsoAgentAgreementForm", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
+
+<div class="row">
+    <b>ISO AGENT AGREEMENT</b>
+    <div class="row g-2">
+        <div class="col-1 text-end">@Html.LabelFor(m => m.Agent, "Agent:")</div>
+        <div class="col-3">@Html.TextBoxFor(m => m.Agent, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-1 text-end">@Html.LabelFor(m => m.Adress, "Address:")</div>
+        <div class="col-7">@Html.TextBoxFor(m => m.Adress, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-2">
+        <div class="col-1 text-end">@Html.LabelFor(m => m.PrintName, "Print Name:")</div>
+        <div class="col-3">@Html.TextBoxFor(m => m.PrintName, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-1 text-end">@Html.LabelFor(m => m.Title, "Title:")</div>
+        <div class="col-3">@Html.TextBoxFor(m => m.Title, new { @class = "form-control", style = "min-width: 100%" })</div>
+        <div class="col-1 text-end">@Html.LabelFor(m => m.Date, "Date:")</div>
+        <div class="col-3">@Html.TextBoxFor(m => m.Date, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <b>ACH AUTHORIZATION FORM</b>
+    <div class="row g-2">
+        <div class="col-2 text-end">@Html.LabelFor(m => m.BusinessName, "Business Name:")</div>
+        <div class="col-10">@Html.TextBoxFor(m => m.BusinessName, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-2">
+        <div class="col-2 text-end">@Html.LabelFor(m => m.DBA, "DBA:")</div>
+        <div class="col-10">@Html.TextBoxFor(m => m.DBA, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-2">
+        <div class="col-2 text-end">@Html.LabelFor(m => m.FeinOrSs, "FEIN or SS#:")</div>
+        <div class="col-10">@Html.TextBoxFor(m => m.FeinOrSs, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-2">
+        <div class="col-2 text-end">@Html.LabelFor(m => m.BankName, "Bank Name:")</div>
+        <div class="col-10">@Html.TextBoxFor(m => m.BankName, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-2">
+        <div class="col-2 text-end">@Html.LabelFor(m => m.BankABAorTRN, "Bank ABA or Transit Routing Number:")</div>
+        <div class="col-10">@Html.TextBoxFor(m => m.BankABAorTRN, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-2">
+        <div class="col-2 text-end">@Html.LabelFor(m => m.BankAccountNumber, "Bank Account Number:")</div>
+        <div class="col-10">@Html.TextBoxFor(m => m.BankAccountNumber, new { @class = "form-control", style = "min-width: 100%" })</div>
+    </div>
+    <div class="row g-2">
+        <div class="col-2 text-end">@Html.LabelFor(m => m.SavingsOrChecking, "Please check one:")</div>
+        <div class="col-10">
+            <div class="form-check">
+                @Html.RadioButtonFor(model => model.SavingsOrChecking, false, new { @class = "form-check-input" })
+                <label class="form-check-label" for="flexRadioDefault1">Checking Account</label>
+            </div>
+            <div class="form-check">
+                @Html.RadioButtonFor(model => model.SavingsOrChecking, true, new { @class = "form-check-input" })
+                <label class="form-check-label" for="flexRadioDefault1">Savings Account</label>
+            </div>
+        </div>
+    </div>
+
+    <row class="align-items-center">
+        <div class="col"></div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Get PDF</button>
+        </div>
+        <div class="col"></div>
+    </row>
+</div>
+}
+

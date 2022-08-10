@@ -7,7 +7,7 @@ using System.Web;
 
 namespace pdfTrial.Models
 {
-    public partial class MerchantAgreement
+    public class MerchantAgreement
     {
         [Display(Name = "Merchants Legal Name")]
         public string MerchantsLegalName { get; set; }

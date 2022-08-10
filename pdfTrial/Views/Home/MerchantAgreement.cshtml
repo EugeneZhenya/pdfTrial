@@ -27,6 +27,24 @@
         <div class="row">
             <b>Proposed Factoring Disclosures for Virginia</b>
         </div>
+        <div class="row g-3">
+            <div class="col-2">@Html.LabelFor(m => m.FundingProvided, "Funding Provided")</div>
+            <div class="col-4">@Html.TextBoxFor(m => m.FundingProvided, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.FundingDisbursed, "Funding Disbursed")</div>
+            <div class="col-4">@Html.TextBoxFor(m => m.FundingDisbursed, new { @class = "form-control", style = "min-width: 100%" })</div>
+        </div>
+        <div class="row g-3">
+            <div class="col-2">@Html.LabelFor(m => m.Payout, "Amount to be Paid by You")</div>
+            <div class="col-4">@Html.TextBoxFor(m => m.Payout, new { @class = "form-control", style = "min-width: 100%" })</div>
+            <div class="col-2">@Html.LabelFor(m => m.Fees, "Finance Charge:")</div>
+            <div class="col-4">@Html.TextBoxFor(m => m.Fees, new { @class = "form-control", style = "min-width: 100%" })</div>
+        </div>
+        <div class="row g-1">
+            <div class="col-auto">We have estimated that approximately </div><div class="col-auto">@Html.TextBoxFor(m => m.Approximately, new { @class = "form-control" }) </div>
+        </div>
+        <div class="row g-1">
+            <div class="col-auto">in receivables will be delivered to us within </div><div class="col-auto">@Html.TextBoxFor(m => m.Payment, new { @class = "form-control" }) </div><div class="col-auto">@Html.TextBoxFor(m => m.Period, new { @class = "form-control" }) </div><div class="col-auto">on average.</div>
+        </div>
     }
     <div class="row">
         <b><u>MERCHANT INFORMATION</u></b>

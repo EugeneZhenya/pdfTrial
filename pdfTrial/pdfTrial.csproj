@@ -211,6 +211,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MetaDataHelper.cs" />
+    <Compile Include="Models\IsoAgentAgreementForm.cs" />
     <Compile Include="Models\MerchantAgreement.cs" />
     <Compile Include="Models\MerchantAgreementTypes.cs" />
     <Compile Include="Models\W9Form.cs" />
@@ -341,6 +342,10 @@
     <Content Include="UploadedFiles\Virginia\whitelabeled\PIRS Capital - Merchant Agreement_3_4.pdf" />
     <Content Include="UploadedFiles\Virginia\whitelabeled\PIRS Capital - Merchant Agreement_4.pdf" />
     <Content Include="UploadedFiles\cert.pfx" />
+    <Content Include="UploadedFiles\ISO AGENT AGREEMENT_Esign_Ready.pdf" />
+    <Content Include="Views\Home\ISOAgentAgreement.cshtml" />
+    <Content Include="Views\Home\SubmitIsoAgentAgreementForm.cshtml" />
+    <Content Include="UploadedFiles\ISO AGENT AGREEMENT_Esign_Ready_Fixed.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

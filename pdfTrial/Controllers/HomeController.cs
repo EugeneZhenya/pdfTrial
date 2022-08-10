@@ -5,6 +5,7 @@ using iText.Kernel.Colors;
 using iText.Kernel.Exceptions;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Annot;
 using iText.Kernel.Pdf.Canvas;
 using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf.Canvas.Parser.Data;
@@ -55,6 +56,18 @@ namespace pdfTrial.Controllers
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             return View();
+        }
+
+        public ActionResult ISOAgentAgreement()
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            IsoAgentAgreementForm agrement = new IsoAgentAgreementForm();
+            agrement.Date = DateTime.Now.ToString("d");
+            agrement.Date10 = DateTime.Now.ToString("d");
+
+            return View(agrement);
         }
 
         [HttpPost]
@@ -250,6 +263,71 @@ namespace pdfTrial.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult IsoAgentAgreementForm(IsoAgentAgreementForm agreementData)
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            return View();
+        }
+
+        public ActionResult SubmitIsoAgentAgreementForm(IsoAgentAgreementForm agreement)
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            string src = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles"), "ISO AGENT AGREEMENT_Esign_Ready_Fixed.pdf");
+            string dest = System.IO.Path.Combine(Server.MapPath("~/Content"), "ISO AGENT AGREEMENT_Esign_Ready Filled.pdf");
+
+            PdfReader reader = new PdfReader(src);
+            reader.SetUnethicalReading(true);
+            PdfDocument pdfDoc = new PdfDocument(reader, new PdfWriter(dest));
+
+            PdfAcroForm form = PdfAcroForm.GetAcroForm(pdfDoc, true);
+            IDictionary<String, PdfFormField> fields = form.GetFormFields();
+
+            agreement.Date10 = agreement.Date;
+            agreement.Party = agreement.Agent;
+            foreach (var prop in agreement.GetType().GetProperties())
+            {
+                if (prop.GetValue(agreement, null) != null)
+                {
+                    var x = Expression.Parameter(typeof(IsoAgentAgreementForm), "x");
+                    var body = Expression.PropertyOrField(x, prop.Name);
+                    if (body.Type.Name == "String")
+                    {
+                        var lambda = Expression.Lambda<Func<IsoAgentAgreementForm, object>>(body, x);
+                        string FieldName = MetaDataHelper.GetDisplayName(lambda);
+                        var fieldToChange = form.GetField(FieldName);
+                        if (fieldToChange != null)
+                        {
+                            fieldToChange.SetValue(prop.GetValue(agreement, null).ToString());
+                        }
+                    }
+                    if (body.Type.Name == "Boolean")
+                    {
+                        if (prop.Name == "SavingsOrChecking")
+                        {
+                            var value = 0;
+                            if (agreement.SavingsOrChecking)
+                            {
+                                value = 1;
+                            }
+                            PdfFormField setSavingsOrChecking;
+                            string FieldName = MetaDataHelper.GetDisplayName<IsoAgentAgreementForm>(t => t.SavingsOrChecking);
+                            fields.TryGetValue(FieldName, out setSavingsOrChecking);
+                            var test2 = setSavingsOrChecking.GetValueAsString();
+                            setSavingsOrChecking.SetValue(value.ToString());
+                        }
+                    }
+                }
+            }
+
+            pdfDoc.Close();
 
             return View();
         }
@@ -556,6 +634,40 @@ namespace pdfTrial.Controllers
             return Redirect(redirectUrl.signingUrlSetInfos[0].signingUrls[0].esignUrl);
         }
 
+        public async Task<ActionResult> IsoAgreementESign()
+        {
+            var ApiURL = "https://api.na3.echosign.com/api/rest/v5/";
+            var accessToken = "3AAABLblqZhDN_PF5pPcKGMEOgPMrsrGiZNfd8_oMHMWC0NglRMdtqVUq5rO2nS1L3fKBv_ySkjiN9CjSPS5u48TSNNZ2b6aU";
+
+            RestAPI api = new RestAPI(ApiURL, accessToken);
+            AdobeObject obj = new AdobeObject(api);
+
+            string filePath = System.IO.Path.Combine(Server.MapPath("~/Content"), "ISO AGENT AGREEMENT_Esign_Ready Filled.pdf");
+            AgreementCreationResponse agreement = await SendDocument(ApiURL, accessToken, filePath, "ISO AGENT AGREEMENT", "eugene@klio.dp.ua");
+
+            await Task.Delay(10000);
+            SigningUrlSet redirectUrl = await obj.GetAgreementSigningUrls(agreement.agreementId);
+
+            return Redirect(redirectUrl.signingUrlSetInfos[0].signingUrls[0].esignUrl);
+        }
+
+        public async Task<ActionResult> MerchantAgreementESign(string PDFUrl)
+        {
+            var ApiURL = "https://api.na3.echosign.com/api/rest/v5/";
+            var accessToken = "3AAABLblqZhDN_PF5pPcKGMEOgPMrsrGiZNfd8_oMHMWC0NglRMdtqVUq5rO2nS1L3fKBv_ySkjiN9CjSPS5u48TSNNZ2b6aU";
+
+            RestAPI api = new RestAPI(ApiURL, accessToken);
+            AdobeObject obj = new AdobeObject(api);
+
+            string filePath = Server.MapPath(PDFUrl);
+            AgreementCreationResponse agreement = await SendDocument(ApiURL, accessToken, filePath, System.IO.Path.GetFileName(filePath), "eugene@klio.dp.ua");
+
+            await Task.Delay(10000);
+            SigningUrlSet redirectUrl = await obj.GetAgreementSigningUrls(agreement.agreementId);
+
+            return Redirect(redirectUrl.signingUrlSetInfos[0].signingUrls[0].esignUrl);
+        }
+
         public async Task<AgreementCreationResponse> SendDocument(string APIURL, string Access_Token, string fullFilePath, string agreementName, string recipientEmail)
         {
             try
@@ -654,7 +766,7 @@ namespace pdfTrial.Controllers
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
-            string pdfTemplate = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles/whitelabeled"), "PIRS Capital - Merchant Agreement_4.pdf");
+            string pdfTemplate = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles"), "ISO AGENT AGREEMENT_Esign_Ready.pdf");
 
             PdfReader pdfReader = new PdfReader(pdfTemplate);
             PdfDocument pdfDoc = new PdfDocument(pdfReader);
